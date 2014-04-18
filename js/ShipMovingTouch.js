@@ -23,7 +23,7 @@ ShipMoving = function(x,y) {
 
 	this.update = function() {
 		//speed limit
-		var maxSpeed = 30; 
+		var maxSpeed = 10; 
 		if(targetVel.isMagGreaterThan(maxSpeed)){
 			targetVel.normalise(); 
 			targetVel.multiplyEq(maxSpeed); 

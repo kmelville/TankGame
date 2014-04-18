@@ -16,7 +16,7 @@
 	}
 	
 	body {
-		background: url('images/background.jpg');
+		background: url('images/background.jpg') no-repeat center center fixed;
 		margin: 0px;
 	}
 	canvas {
@@ -151,7 +151,7 @@ function draw() {
 				
 				c.beginPath(); 
 				c.fillStyle = "white";
-				c.fillText("touch id : "+touch.identifier+" x:"+touch.clientX+" y:"+touch.clientY, touch.clientX+30, touch.clientY-30); 
+				//c.fillText("touch id : "+touch.identifier+" x:"+touch.clientX+" y:"+touch.clientY, touch.clientX+30, touch.clientY-30); 
 
 				c.beginPath(); 
 				c.strokeStyle = "red";
