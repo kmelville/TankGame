@@ -116,7 +116,7 @@ function draw() {
 		else if (y>canvas.height) y = 0; 
 	}
 	
-	tank.draw();
+	tank.draw(theta);
 	
 	
 	for (var i = 0; i < bullets.length; i++) {
@@ -181,7 +181,7 @@ function draw() {
 function makeBullet(touchX, touchY) {
 	
 	var bullet;
-	theta = Math.atan2(touchY - tank.pos.y, touchX - tank.pos.x);
+	    theta = Math.atan2(touchY - tank.pos.y, touchX - tank.pos.x);
 	if (theta < 0)
 		theta += 2 * Math.PI;
 	angle = theta * (180 / Math.PI);
