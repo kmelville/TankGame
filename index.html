@@ -170,18 +170,19 @@ function draw() {
 	
 }
 
-function makeBullet() {
+function makeBullet(touchX, touchY) {
 	
 	var bullet;
+	var shotAngle = (tank.pos.x - touchX)/(tank.pos.y - touchY);
 	
 	if(spareBullets.length>0) {
 		
 		bullet = spareBullets.pop(); 
-		bullet.reset(tank.pos.x, tank.pos.y, tank.angle); 
+		bullet.reset(tank.pos.x, tank.pos.y, shotAngle); 
 		
 	} else {
 		
-		bullet = new Bullet(tank.pos.x, tank.pos.y, tank.angle); 
+		bullet = new Bullet(tank.pos.x, tank.pos.y, shotAngle); 
 		bullets.push(bullet);
 
 	}
@@ -226,7 +227,7 @@ function onTouchStart(e) {
 			continue; 		
 		} else {
 			
-			makeBullet(); 
+			makeBullet(touch.clientX, touch.clientY); 
 			
 		}	
 	}
