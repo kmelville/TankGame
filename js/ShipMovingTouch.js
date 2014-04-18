@@ -6,7 +6,11 @@ ShipMoving = function(x,y) {
 	var vel = this.vel = new Vector2(0,0);
 	var targetVel = this.targetVel = new Vector2(0,0);  
 	var temp = new Vector2(0,0); 
-
+	var imageObj = new Image();
+	imageObj.onload = function() {
+        console.log("Image has loaded");
+	};
+	imageObj.src = 'images/tank1_body.png';
 	
 	var thrustSize = 0; 
 	
@@ -20,11 +24,7 @@ ShipMoving = function(x,y) {
 	var c = canvas.getContext( '2d' );
 	this.c = c;  
 	
-	var imageObj = new Image();
-	imageObj.onload = function() {
-        c.drawImage(imageObj, 0, 0);
-	};
-	imageObj.src = 'images/tank1_body.png';
+	
 	 
 	var counter = 0; 
 
@@ -64,19 +64,19 @@ ShipMoving = function(x,y) {
 		c.save();
 		c.translate(30, 30); 
 		//this.c.rotate(this.angle * Vector2Const.TO_RADIANS);
-
-		// c.strokeStyle = "#fff"; 
-		// c.lineWidth = 2; 
+         
+		 // c.strokeStyle = "#fff"; 
+		 // c.lineWidth = 2; 
 		
-		// c.beginPath();
-		// c.moveTo(-10, -10);
-		// c.lineTo(-10, 10);
-		// c.lineTo(14, 0);
-		// c.closePath(); 
-		// c.stroke();
-		
+		 // c.beginPath();
+		 // c.moveTo(-10, -10);
+		 // c.lineTo(-10, 10);
+		 // c.lineTo(14, 0);
+		 // c.closePath(); 
+		 // c.stroke();
+		c.drawImage(imageObj, -17, -17);
 
-		c.drawImage(imageObj, 10, 14);
+		
 	
 		// if(thrustSize>0) {
 
