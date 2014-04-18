@@ -185,8 +185,11 @@ function makeBullet(touchX, touchY) {
 	var shotAngleAtanDegrees = shotAngleAtan * (180 / Math.PI);
 	var theta = Math.atan2(-(touchY - tank.pos.y), touchX - tank.pos.x);
 	if (theta < 0)
-    theta += 2 * Math.PI;
+		theta += 2 * Math.PI;
 	angle = theta * (180 / Math.PI);
+	angle -= 90;
+	if (angle < 0)
+		angle += 360;
 	
 	
 	if(spareBullets.length>0) {
