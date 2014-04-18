@@ -174,20 +174,21 @@ function makeBullet(touchX, touchY) {
 	
 	var bullet;
 	var shotAngle = (tank.pos.x - touchX)/(tank.pos.y - touchY);
+	alert( "shotAngle" );
 	
 	if(spareBullets.length>0) {
 		
 		bullet = spareBullets.pop(); 
-		bullet.reset(tank.pos.x, tank.pos.y, shotAngle); 
+		bullet.reset(tank.pos.x, tank.pos.y, tank.angle); 
 		
 	} else {
 		
-		bullet = new Bullet(tank.pos.x, tank.pos.y, shotAngle); 
+		bullet = new Bullet(tank.pos.x, tank.pos.y, tank.angle); 
 		bullets.push(bullet);
 
 	}
 	
-	//bullet.vel.plusEq(tank.vel); 
+	bullet.vel.plusEq(tank.vel); 
 	
 	
 }
