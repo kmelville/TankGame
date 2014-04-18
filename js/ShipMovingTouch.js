@@ -61,7 +61,7 @@ ShipMoving = function(x,y) {
 	
 
 	// c = canvas context
-	this.draw = function() {		
+	this.draw = function(theta) {		
 		
 		c.clearRect(0,0,60,60); 
 		c.fillStyle = "rgba(255,255,255,0.5)";
@@ -80,7 +80,17 @@ ShipMoving = function(x,y) {
 		 // c.closePath(); 
 		 // c.stroke();
 		c.drawImage(tankBody, -17, -17);
-		c.drawImage(tankGun, -28, -28);
+ 
+		var buffer = document.createElement('canvas');
+		buffer.width = buffer.height = 60;
+		var bc = buffer.getContext('2d');
+		bc.translate(30, 30);
+		bc.rotate(theta);
+		bc.drawImage(tankGun, -28, -28);
+		c.drawImage(buffer, -30, -30);
+		 
+		// then draw the image back and up
+		//c.drawImage(tankGun, -28, -28);
 
 		
 	
@@ -99,6 +109,24 @@ ShipMoving = function(x,y) {
 		
 		c.restore();
 		
+		var posx = Math.round(pos.x-30); 
+		var posy = Math.round(pos.y-30); 
+		
+		var styleStr = "translate3d("+posx+"px, "+posy+"px, 0px) rotate("+this.angle+"deg)"; 
+		canvas.style.webkitTransform = canvas.style.MozTransform = canvas.style.OTransform = canvas.style.transform = styleStr; 
+		//console.log(styleStr); 
+		
+		
+	};
+	this.drawGun = function(angle) {		
+		
+		//c.clearRect(0,0,60,60); 
+		//c.fillStyle = "rgba(255,255,255,0.5)";
+		//c.save();
+		c.translate(30, 30); 
+		
+		c.drawImage(tankGun, -28, -28);
+		//c.restore();
 		var posx = Math.round(pos.x-30); 
 		var posy = Math.round(pos.y-30); 
 		

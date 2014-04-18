@@ -57,6 +57,7 @@ var mouseX, mouseY,
 	touches = [], // array of touch vectors
 	tank = new ShipMoving(halfWidth, halfHeight)
 	gun = new ShipMoving(halfWidth, halfHeight)
+var theta = 0;	
 	bullets = [],
 	spareBullets = [];
 	
@@ -180,10 +181,7 @@ function draw() {
 function makeBullet(touchX, touchY) {
 	
 	var bullet;
-	var shotAngle = (touchY - tank.pos.y)/(touchX - tank.pos.x);
-	var shotAngleAtan = Math.atan(shotAngle);
-	var shotAngleAtanDegrees = shotAngleAtan * (180 / Math.PI);
-	var theta = Math.atan2(touchY - tank.pos.y, touchX - tank.pos.x);
+	theta = Math.atan2(touchY - tank.pos.y, touchX - tank.pos.x);
 	if (theta < 0)
 		theta += 2 * Math.PI;
 	angle = theta * (180 / Math.PI);
@@ -192,7 +190,6 @@ function makeBullet(touchX, touchY) {
 		
 		bullet = spareBullets.pop(); 
 		bullet.reset(tank.pos.x, tank.pos.y, angle);
-		//alert(angle + " old: " + shotAngleAtanDegrees + " tank: " + tank.angle);
 	} else {
 		
 		bullet = new Bullet(tank.pos.x, tank.pos.y, angle); 
