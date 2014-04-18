@@ -67,6 +67,12 @@ ShipMoving = function(x,y) {
 		c.lineTo(50, 0);
 		c.closePath(); 
 		c.stroke();
+		var imageObj = new Image();
+
+		imageObj.onload = function() {
+        c.drawImage(imageObj, 10, 10);
+		};
+		imageObj.src = 'images/tank1_body.png';
 	
 		// if(thrustSize>0) {
 
