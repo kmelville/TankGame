@@ -183,16 +183,23 @@ function makeBullet(touchX, touchY) {
 	var shotAngle = (touchY - tank.pos.y)/(touchX - tank.pos.x);
 	var shotAngleAtan = Math.atan(shotAngle);
 	var shotAngleAtanDegrees = shotAngleAtan * (180 / Math.PI);
+	var angle = Math.toDegrees(Math.atan2(touchX - tank.pos.x, touchY - tank.pos.y));
+
+    if(angle < 0){
+        angle += 360;
+    }
+
+    return angle;
 	
 	
 	if(spareBullets.length>0) {
 		
 		bullet = spareBullets.pop(); 
-		bullet.reset(tank.pos.x, tank.pos.y, 315);
+		bullet.reset(tank.pos.x, tank.pos.y, angle);
 		//alert(shotAngle + " atan: " + Math.atan(shotAngle) + " tank: " + tank.angle);
 	} else {
 		
-		bullet = new Bullet(tank.pos.x, tank.pos.y, 315); 
+		bullet = new Bullet(tank.pos.x, tank.pos.y, angle); 
 		bullets.push(bullet);
 
 	}
