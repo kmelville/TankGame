@@ -55,12 +55,12 @@ var mouseX, mouseY,
 	// is this running in a touch capable environment?
 	touchable = 'createTouch' in document,
 	touches = [], // array of touch vectors
-	ship = new ShipMoving(halfWidth, halfHeight)
+	tank = new ShipMoving(halfWidth, halfHeight)
 	bullets = [],
 	spareBullets = [];
 	
 	
-document.body.appendChild(ship.canvas);
+document.body.appendChild(tank.canvas);
 
 setInterval(draw, 1000/35); 
 
@@ -96,19 +96,19 @@ function draw() {
   
 	c.clearRect(0,0,canvas.width, canvas.height); 
 
-	ship.targetVel.copyFrom(leftVector);
-	ship.targetVel.multiplyEq(0.2);
+	tank.targetVel.copyFrom(leftVector);
+	tank.targetVel.multiplyEq(0.2);
 	
-	ship.update(); 
+	tank.update(); 
 	
-	with(ship.pos) {
+	with(tank.pos) {
 		if(x<0) x = canvas.width; 
 		else if(x>canvas.width) x = 0;
 		if(y<0) y = canvas.height; 
 		else if (y>canvas.height) y = 0; 
 	}
 	
-	ship.draw(); 
+	tank.draw(); 
 	
 	
 	for (var i = 0; i < bullets.length; i++) {
@@ -133,17 +133,17 @@ function draw() {
 			
 			if(touch.identifier == leftTouchID){
 				c.beginPath(); 
-				c.strokeStyle = "cyan"; 
+				c.strokeStyle = "blue"; 
 				c.lineWidth = 6; 
 				c.arc(leftTouchStartPos.x, leftTouchStartPos.y, 40,0,Math.PI*2,true); 
 				c.stroke();
 				c.beginPath(); 
-				c.strokeStyle = "cyan"; 
+				c.strokeStyle = "blue"; 
 				c.lineWidth = 2; 
 				c.arc(leftTouchStartPos.x, leftTouchStartPos.y, 60,0,Math.PI*2,true); 
 				c.stroke();
 				c.beginPath(); 
-				c.strokeStyle = "cyan"; 
+				c.strokeStyle = "blue"; 
 				c.arc(leftTouchPos.x, leftTouchPos.y, 40, 0,Math.PI*2, true); 
 				c.stroke(); 
 				
@@ -177,16 +177,16 @@ function makeBullet() {
 	if(spareBullets.length>0) {
 		
 		bullet = spareBullets.pop(); 
-		bullet.reset(ship.pos.x, ship.pos.y, ship.angle); 
+		bullet.reset(tank.pos.x, tank.pos.y, tank.angle); 
 		
 	} else {
 		
-		bullet = new Bullet(ship.pos.x, ship.pos.y, ship.angle); 
+		bullet = new Bullet(tank.pos.x, tank.pos.y, tank.angle); 
 		bullets.push(bullet);
 
 	}
 	
-	bullet.vel.plusEq(ship.vel); 
+	bullet.vel.plusEq(tank.vel); 
 	
 	
 }
