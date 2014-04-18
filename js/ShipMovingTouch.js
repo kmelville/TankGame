@@ -6,11 +6,16 @@ ShipMoving = function(x,y) {
 	var vel = this.vel = new Vector2(0,0);
 	var targetVel = this.targetVel = new Vector2(0,0);  
 	var temp = new Vector2(0,0); 
-	var imageObj = new Image();
-	imageObj.onload = function() {
+	var tankBody = new Image();
+	tankBody.onload = function() {
         console.log("Image has loaded");
 	};
-	imageObj.src = 'images/tank1_body.png';
+	tankBody.src = 'images/tank1_body.png';
+	var tankGun = new Image();
+	tankGun.onload = function() {
+        console.log("Image has loaded");
+	};
+	tankGun.src = 'images/tank1_gun.png';
 	
 	var thrustSize = 0; 
 	
@@ -74,7 +79,8 @@ ShipMoving = function(x,y) {
 		 // c.lineTo(14, 0);
 		 // c.closePath(); 
 		 // c.stroke();
-		c.drawImage(imageObj, -17, -17);
+		c.drawImage(tankBody, -17, -17);
+		c.drawImage(tankGun, -28, -28);
 
 		
 	
@@ -98,7 +104,7 @@ ShipMoving = function(x,y) {
 		
 		var styleStr = "translate3d("+posx+"px, "+posy+"px, 0px) rotate("+this.angle+"deg)"; 
 		canvas.style.webkitTransform = canvas.style.MozTransform = canvas.style.OTransform = canvas.style.transform = styleStr; 
-		console.log(styleStr); 
+		//console.log(styleStr); 
 		
 		
 	};
