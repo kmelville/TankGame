@@ -180,17 +180,17 @@ function draw() {
 function makeBullet(touchX, touchY) {
 	
 	var bullet;
-	var shotAngle = (touchY - tank.pos.y)/(touchX - tank.pos.x);
+	var shotAngle = (touchY - tank.pos.y)/(touchX - tank.pos.x)* (Math.PI / 180);
 	
 	
 	if(spareBullets.length>0) {
 		
 		bullet = spareBullets.pop(); 
-		bullet.reset(tank.pos.x, tank.pos.y, 45);
-		alert(shotAngle + " atan: " + Math.atan(shotAngle) + " tank: " + tank.angle);
+		bullet.reset(tank.pos.x, tank.pos.y, shotAngle);
+		//alert(shotAngle + " atan: " + Math.atan(shotAngle) + " tank: " + tank.angle);
 	} else {
 		
-		bullet = new Bullet(tank.pos.x, tank.pos.y, 45); 
+		bullet = new Bullet(tank.pos.x, tank.pos.y, shotAngle); 
 		bullets.push(bullet);
 
 	}
