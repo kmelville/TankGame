@@ -64,22 +64,22 @@ ShipMoving = function(x,y) {
 		c.beginPath();
 		c.moveTo(-10, -10);
 		c.lineTo(-10, 10);
-		c.lineTo(14, 0);
+		c.lineTo(50, 0);
 		c.closePath(); 
 		c.stroke();
 	
-		if(thrustSize>0) {
+		// if(thrustSize>0) {
 
-			c.beginPath();
-			c.moveTo(-10, -6);
+			// c.beginPath();
+			// c.moveTo(-10, -6);
 			
-			c.lineTo(-10 - (thrustSize/((counter%2)+1)) , 0);
+			// c.lineTo(-10 - (thrustSize/((counter%2)+1)) , 0);
 			
-			c.lineTo(-10, 6);
-			//c.closePath(); 
-			c.stroke();
-			counter++; 
-		}
+			// c.lineTo(-10, 6);
+			// //c.closePath(); 
+			// c.stroke();
+			// counter++; 
+		// }
 		
 		c.restore();
 		
