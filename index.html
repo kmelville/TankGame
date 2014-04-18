@@ -187,10 +187,10 @@ function makeBullet(touchX, touchY) {
 	if (theta < 0)
 		theta += 2 * Math.PI;
 	angle = theta * (180 / Math.PI);
-	angle -= 90;
-	if (angle < 0)
-		angle += 360;
-	
+	angle += 90;
+	if (angle < 360){
+		angle -= 360;
+	}
 	
 	if(spareBullets.length>0) {
 		
