@@ -85,7 +85,7 @@ ShipMoving = function(x,y) {
 		buffer.width = buffer.height = 60;
 		var bc = buffer.getContext('2d');
 		bc.translate(30, 30);
-		bc.rotate(this.angle);
+		bc.rotate(this.angle * (Math.PI/180);
 		bc.drawImage(tankGun, -28, -28);
 		c.drawImage(buffer, -30, -30);
 		 

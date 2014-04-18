@@ -56,7 +56,6 @@ var mouseX, mouseY,
 	touchable = 'createTouch' in document,
 	touches = [], // array of touch vectors
 	tank = new ShipMoving(halfWidth, halfHeight)
-	gun = new ShipMoving(halfWidth, halfHeight)
 var theta = 0;	
 	bullets = [],
 	spareBullets = [];
@@ -104,10 +103,6 @@ function draw() {
 	
 	tank.update(); 
 	
-	gun.targetVel.copyFrom(leftVector);
-	gun.targetVel.multiplyEq(0.2);
-	
-	gun.update(); 
 	
 	with(tank.pos) {
 		if(x<0) x = canvas.width; 
