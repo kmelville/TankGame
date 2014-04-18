@@ -180,7 +180,7 @@ function draw() {
 function makeBullet(touchX, touchY) {
 	
 	var bullet;
-	var shotAngle = (touchX - tank.pos.x)/(touchY - tank.pos.y);
+	var shotAngle = (touchY - tank.pos.y)/(touchX - tank.pos.x);
 	
 	
 	if(spareBullets.length>0) {
