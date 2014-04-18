@@ -186,13 +186,11 @@ function makeBullet(touchX, touchY) {
 	if(spareBullets.length>0) {
 		
 		bullet = spareBullets.pop(); 
-		bullet.reset(tank.pos.x, tank.pos.y, 0);
-		bullet.rotate(Math.atan(shotAngle));
+		bullet.reset(tank.pos.x, tank.pos.y, Math.atan(shotAngle));
 	} else {
 		
-		bullet = new Bullet(tank.pos.x, tank.pos.y, 0); 
+		bullet = new Bullet(tank.pos.x, tank.pos.y, Math.atan(shotAngle)); 
 		bullets.push(bullet);
-		bullet.rotate(Math.atan(shotAngle));
 
 	}
 	
