@@ -56,11 +56,13 @@ var mouseX, mouseY,
 	touchable = 'createTouch' in document,
 	touches = [], // array of touch vectors
 	tank = new ShipMoving(halfWidth, halfHeight)
+	gun = new ShipMoving(halfWidth, halfHeight)
 	bullets = [],
 	spareBullets = [];
 	
 	
 document.body.appendChild(tank.canvas);
+document.body.appendChild(gun.canvas);
 
 setInterval(draw, 1000/35); 
 
@@ -101,6 +103,11 @@ function draw() {
 	
 	tank.update(); 
 	
+	gun.targetVel.copyFrom(leftVector);
+	gun.targetVel.multiplyEq(0.2);
+	
+	gun.update(); 
+	
 	with(tank.pos) {
 		if(x<0) x = canvas.width; 
 		else if(x>canvas.width) x = 0;
@@ -108,7 +115,7 @@ function draw() {
 		else if (y>canvas.height) y = 0; 
 	}
 	
-	tank.draw(); 
+	tank.draw();
 	
 	
 	for (var i = 0; i < bullets.length; i++) {
@@ -179,16 +186,17 @@ function makeBullet(touchX, touchY) {
 	if(spareBullets.length>0) {
 		
 		bullet = spareBullets.pop(); 
-		bullet.reset(tank.pos.x, tank.pos.y, shotAngle); 
-		alert(shotAngle + " and " + tank.angle);
+		bullet.reset(tank.pos.x, tank.pos.y, 0);
+		//bullet.rotate(shotAngle);
 	} else {
 		
-		bullet = new Bullet(tank.pos.x, tank.pos.y, shotAngle); 
+		bullet = new Bullet(tank.pos.x, tank.pos.y, 0); 
 		bullets.push(bullet);
+		//bullet.rotate(shotAngle);
 
 	}
 	
-	bullet.vel.plusEq(tank.vel); 
+	//bullet.vel.plusEq(tank.vel); 
 	
 	
 }
