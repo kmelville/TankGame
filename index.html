@@ -101,14 +101,12 @@ function draw() {
 	tank.targetVel.multiplyEq(0.2);
 	
 	tank.update(); 
-	alert(tank.width);
-	alert(tank.height);
 	
 	with(tank.pos) {
-		if(x<(0 + tank.width/2)) x = 0 + tank.width/2; 
-		else if(x>canvas.width) x = canvas.width; 
-		if(y<0 + tank.height/2) y = 0 + tank.height/2; 
-		else if (y>canvas.height) y = canvas.height; 
+		if(x<(30)) x = 30; 
+		else if(x>canvas.width-30) x = canvas.width-30; 
+		if(y<30) y = 30; 
+		else if (y>canvas.height-30) y = canvas.height-30; 
 	}
 	
 	tank.draw(theta);
