@@ -56,14 +56,14 @@ var mouseX, mouseY,
 	touchable = 'createTouch' in document,
 	touches = [], // array of touch vectors
 	tank = new ShipMoving(halfWidth, halfHeight),
-	enemy = new ShipMoving(halfWidth-60, halfHeight-60),
+	//enemy = new ShipMoving(halfWidth-60, halfHeight-60),
 	theta = 0,
 	bullets = [],
 	spareBullets = [];
 	
 	
 document.body.appendChild(tank.canvas);
-document.body.appendChild(enemy.canvas);
+//document.body.appendChild(enemy.canvas);
 
 setInterval(draw, 1000/35); 
 
@@ -113,7 +113,7 @@ function draw() {
 	
 	tank.draw(theta);
 	
-	enemy.draw(theta);
+	//enemy.draw(theta);
 	
 	
 	for (var i = 0; i < bullets.length; i++) {
