@@ -55,14 +55,13 @@ var mouseX, mouseY,
 	// is this running in a touch capable environment?
 	touchable = 'createTouch' in document,
 	touches = [], // array of touch vectors
-	tank = new ShipMoving(halfWidth, halfHeight)
-var theta = 0;	
+	tank = new ShipMoving(halfWidth, halfHeight),
+	theta = 0,
 	bullets = [],
 	spareBullets = [];
 	
 	
 document.body.appendChild(tank.canvas);
-document.body.appendChild(gun.canvas);
 
 setInterval(draw, 1000/35); 
 
@@ -102,7 +101,6 @@ function draw() {
 	tank.targetVel.multiplyEq(0.2);
 	
 	tank.update(); 
-	
 	
 	with(tank.pos) {
 		if(x<0) x = canvas.width; 
@@ -179,10 +177,9 @@ function makeBullet(touchX, touchY) {
 	    theta = Math.atan2(touchY - tank.pos.y, touchX - tank.pos.x);
 	if (theta < 0)
 		theta += 2 * Math.PI;
-	angle = theta * (180 / Math.PI);
+	var angle = theta * (180 / Math.PI);
 	
 	if(spareBullets.length>0) {
-		
 		bullet = spareBullets.pop(); 
 		bullet.reset(tank.pos.x, tank.pos.y, angle);
 	} else {
