@@ -56,13 +56,14 @@ var mouseX, mouseY,
 	touchable = 'createTouch' in document,
 	touches = [], // array of touch vectors
 	tank = new ShipMoving(halfWidth, halfHeight),
-	enemy = new ShipMoving(50,39),
+	enemy = new ShipMoving(halfWidth-60, halfHeight-60),
 	theta = 0,
 	bullets = [],
 	spareBullets = [];
 	
 	
 document.body.appendChild(tank.canvas);
+document.body.appendChild(enemy.canvas);
 
 setInterval(draw, 1000/35); 
 
@@ -102,10 +103,6 @@ function draw() {
 	tank.targetVel.multiplyEq(0.2);
 	
 	tank.update();
-	
-	enemy.targetVel.copyFrom(leftVector);
-	enemy.targetVel.multiplyEq(0.2);
-    enemy.update();	
 	
 	with(tank.pos) {
 		if(x<(30)) x = 30; 
