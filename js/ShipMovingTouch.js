@@ -120,24 +120,6 @@ ShipMoving = function(x,y) {
 		
 		
 	};
-	this.drawGun = function(angle) {		
-		
-		//c.clearRect(0,0,60,60); 
-		//c.fillStyle = "rgba(255,255,255,0.5)";
-		//c.save();
-		c.translate(30, 30); 
-		
-		c.drawImage(tankGun, -28, -28);
-		//c.restore();
-		var posx = Math.round(pos.x-30); 
-		var posy = Math.round(pos.y-30); 
-		
-		var styleStr = "translate3d("+posx+"px, "+posy+"px, 0px) rotate("+this.angle+"deg)"; 
-		canvas.style.webkitTransform = canvas.style.MozTransform = canvas.style.OTransform = canvas.style.transform = styleStr; 
-		//console.log(styleStr); 
-		
-		
-	};
 
 
 }; 

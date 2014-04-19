@@ -103,10 +103,10 @@ function draw() {
 	tank.update(); 
 	
 	with(tank.pos) {
-		if(x<0) x = canvas.width; 
-		else if(x>canvas.width) x = 0;
-		if(y<0) y = canvas.height; 
-		else if (y>canvas.height) y = 0; 
+		if(x<0) x = 0; 
+		else if(x>canvas.width) x = canvas.width; 
+		if(y<0) y = 0; 
+		else if (y>canvas.height) y = canvas.height; 
 	}
 	
 	tank.draw(theta);
