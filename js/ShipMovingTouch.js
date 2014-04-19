@@ -80,6 +80,8 @@ ShipMoving = function(x,y) {
 		 // c.closePath(); 
 		 // c.stroke();
 		c.drawImage(tankBody, -17, -17);
+		angle = theta - this.angle;
+		alert(this.angle + " theta " + theta);
  
 		var buffer = document.createElement('canvas');
 		buffer.width = buffer.height = 60;
