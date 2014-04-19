@@ -16,7 +16,8 @@
 	}
 	
 	body {
-		background: url('images/background.jpg') no-repeat center center fixed;
+		background: url('images/background.jpg');
+		background-size: cover;
 		margin: 0px;
 	}
 	canvas {
@@ -36,6 +37,7 @@
 <script src="js/Vector2.js"></script>
 <script src="js/ShipMovingTouch.js"></script>
 <script src="js/BulletSebs.js"></script>
+<script src="js/Box.js"></script>
 <script>
 
 var canvas,
@@ -56,6 +58,7 @@ var mouseX, mouseY,
 	touchable = 'createTouch' in document,
 	touches = [], // array of touch vectors
 	tank = new ShipMoving(halfWidth, halfHeight),
+	wall = new Box(width * 3/4,halfHeight),
 	//enemy = new ShipMoving(halfWidth-60, halfHeight-60),
 	theta = 0,
 	bullets = [],
@@ -63,6 +66,7 @@ var mouseX, mouseY,
 	
 	
 document.body.appendChild(tank.canvas);
+document.body.appendChild(wall.canvas);
 //document.body.appendChild(enemy.canvas);
 
 setInterval(draw, 1000/35); 
@@ -86,6 +90,8 @@ function resetCanvas (e) {
 	
 	halfWidth = canvas.width/2; 
 	halfHeight = canvas.height/2;
+	width = canvas.width;
+	height = canvas.height;
 	
 	//make sure we scroll to the top left. 
 	window.scrollTo(0,0); 
@@ -112,6 +118,7 @@ function draw() {
 	}
 	
 	tank.draw(theta);
+	wall.draw();
 	
 	//enemy.draw(theta);
 	
