@@ -103,9 +103,9 @@ function draw() {
 	tank.update(); 
 	
 	with(tank.pos) {
-		if(x<0) x = 0; 
+		if(x<0) x = 0 + tank.width/2; 
 		else if(x>canvas.width) x = canvas.width; 
-		if(y<0) y = 0; 
+		if(y<0) y = 0 + tank.height/2; 
 		else if (y>canvas.height) y = canvas.height; 
 	}
 	
