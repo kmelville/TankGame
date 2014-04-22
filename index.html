@@ -114,12 +114,17 @@ function draw() {
 	
 	wall.update();
 	
+	if (isColliding(tank,wall)){
+		alert("collision!");
+	}
+	
 	with(tank.pos) {
 		if(x<(30)) x = 30; 
 		else if(x>canvas.width-30) x = canvas.width-30; 
 		if(y<30) y = 30; 
 		else if (y>canvas.height-30) y = canvas.height-30; 
 	}
+	
 	
 	tank.draw(theta);
 	wall.draw();
@@ -207,6 +212,11 @@ function makeBullet(touchX, touchY) {
 	//bullet.vel.plusEq(tank.vel); 
 	
 	
+}
+
+function isColliding(objA,objB) {
+	//return true;
+	return !(objA.pos.x + objA.canvas.width < objB.pos.x || objB.pos.x + objB.canvas.width < objA.pos.x || objA.pos.y + objA.canvas.height < objB.pos.y || objB.pos.y + objB.canvas.height < objA.pos.y);
 }
 
 /*	
