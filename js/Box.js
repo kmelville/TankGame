@@ -2,6 +2,10 @@ Box = function(x,y) {
 
 
 	var pos = this.pos = new Vector2(x,y);  
+	this.angle = 0; 
+	var vel = this.vel = new Vector2(0,0);
+	var targetVel = this.targetVel = new Vector2(0,0);  
+	var temp = new Vector2(0,0);
 	var boxImg = new Image();
 	boxImg.onload = function() {
         console.log("Image has loaded");
@@ -18,7 +22,31 @@ Box = function(x,y) {
 	var c = canvas.getContext( '2d' );
 	this.c = c;  
 
-	
+	this.update = function() {
+		//speed limit
+		var maxSpeed = 10; 
+		if(targetVel.isMagGreaterThan(maxSpeed)){
+			targetVel.normalise(); 
+			targetVel.multiplyEq(maxSpeed); 
+			
+		}
+		if(!targetVel.equals(vel)) {
+			
+			temp.copyFrom(targetVel); 
+			temp.minusEq(vel); 
+			if(temp.isMagGreaterThan(0.001)) 
+				temp.multiplyEq(0.3); 
+		
+			vel.plusEq(temp); 
+			
+		} 
+		pos.plusEq(vel);
+		
+		if(vel.isMagGreaterThan(0)) this.angle = vel.angle();
+		 
+		//if(thrustSize>0) thrustSize--; 
+		thrustSize = vel.magnitude(); 
+	};
 
 	// c = canvas context
 	this.draw = function() {		
