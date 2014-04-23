@@ -117,16 +117,16 @@ function draw() {
 	with(tank.pos) {
 		if (isColliding(tank,wall)){
 			if(!(tank.pos.x + tank.canvas.width < wall.pos.x)){
-				x -= 100;
+				x = 30;
 			}
 			if(!(wall.pos.x + wall.canvas.width < tank.pos.x)){
-				x += 100;
+				x = 30;
 			}
 			if(!(tank.pos.y + tank.canvas.height < wall.pos.y)){
-				y -= 100;
+				y = 30;
 			}
 			if(!(wall.pos.y + wall.canvas.height < tank.pos.y)){
-				y += 100;
+				y = 30;
 			}			
 		}
 	}
