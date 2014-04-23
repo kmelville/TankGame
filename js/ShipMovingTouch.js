@@ -90,24 +90,6 @@ ShipMoving = function(x,y) {
 		bc.rotate(angle);
 		bc.drawImage(tankGun, -28, -28);
 		c.drawImage(buffer, -30, -30);
-		 
-		// then draw the image back and up
-		//c.drawImage(tankGun, -28, -28);
-
-		
-	
-		// if(thrustSize>0) {
-
-			// c.beginPath();
-			// c.moveTo(-10, -6);
-			
-			// c.lineTo(-10 - (thrustSize/((counter%2)+1)) , 0);
-			
-			// c.lineTo(-10, 6);
-			// //c.closePath(); 
-			// c.stroke();
-			// counter++; 
-		// }
 		
 		c.restore();
 		

@@ -115,7 +115,19 @@ function draw() {
 	wall.update();
 	
 	if (isColliding(tank,wall)){
-		alert("collision!");
+		if(!(tank.pos.x + tank.canvas.width < wall.pos.x)){
+			tank.pos.x -= 5;
+		}
+		if(!(wall.pos.x + wall.canvas.width < tank.pos.x)){
+			tank.pos.x += 5;
+		}
+		if(!(tank.pos.y + tank.canvas.height < wall.pos.y)){
+			tank.pos.y -= 5;
+		}
+		if(!(wall.pos.y + wall.canvas.height < tank.pos.y)){
+			tank.pos.y += 5;
+		}
+		
 	}
 	
 	with(tank.pos) {
@@ -215,7 +227,6 @@ function makeBullet(touchX, touchY) {
 }
 
 function isColliding(objA,objB) {
-	//return true;
 	return !(objA.pos.x + objA.canvas.width < objB.pos.x || objB.pos.x + objB.canvas.width < objA.pos.x || objA.pos.y + objA.canvas.height < objB.pos.y || objB.pos.y + objB.canvas.height < objA.pos.y);
 }
 
