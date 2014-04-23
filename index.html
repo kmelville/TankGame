@@ -114,18 +114,26 @@ function draw() {
 	
 	wall.update();
 	
+	//bullets.foreach(checkBulletCollision);
+	var index;
+	for (index = 0; index < bullets.length; ++index) {
+		checkBulletCollision(index, bullets.indexOf(index));
+	}
+	
+	
+	
 	with(tank.pos) {
 		if (isColliding(tank,wall)){
-			if(!(tank.pos.x + tank.canvas.width < wall.pos.x)){
+			if(!(tank.pos.x + tank.canvas.width < wall.pos.x)){ //left side of wall
 				x = wall.pos.x;
 			}
-			if(!(wall.pos.x + wall.canvas.width < tank.pos.x)){
+			if(!(wall.pos.x + wall.canvas.width < tank.pos.x)){ //right side of wall
 				x = wall.pos.x + wall.canvas.width;
 			}
-			if(!(tank.pos.y + tank.canvas.height < wall.pos.y)){
+			if(!(tank.pos.y + tank.canvas.height < wall.pos.y)){ //top of wall
 				y = wall.pos.y;
 			}
-			if(!(wall.pos.y + wall.canvas.height < tank.pos.y)){
+			if(!(wall.pos.y + wall.canvas.height < tank.pos.y)){ //bottom of wall
 				y = wall.pos.y + wall.canvas.height;
 			}			
 		}
@@ -230,6 +238,12 @@ function makeBullet(touchX, touchY) {
 function isColliding(objA,objB) {
 	return !(objA.pos.x + objA.canvas.width < objB.pos.x || objB.pos.x + objB.canvas.width < objA.pos.x || objA.pos.y + objA.canvas.height < objB.pos.y || objB.pos.y + objB.canvas.height < objA.pos.y);
 }
+
+function checkBulletCollision(index, element){
+	if(isColliding(element, wall)){
+		bullets.splice(index);
+	}
+} 
 
 /*	
  *	Touch event (e) properties : 
