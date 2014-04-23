@@ -57,7 +57,7 @@ var mouseX, mouseY,
 	touchable = 'createTouch' in document,
 	touches = [], // array of touch vectors
 	tank = new ShipMoving(halfWidth, halfHeight),
-	wall = new Box(400,300),
+	wall = new Box(width*3/4,halfHeight),
 	//enemy = new ShipMoving(halfWidth-60, halfHeight-60),
 	theta = 0,
 	bullets = [],
@@ -117,16 +117,16 @@ function draw() {
 	with(tank.pos) {
 		if (isColliding(tank,wall)){
 			if(!(tank.pos.x + tank.canvas.width < wall.pos.x)){
-				x = wall.pos.x + 30;
+				x = wall.pos.x - 30;
 			}
 			if(!(wall.pos.x + wall.canvas.width < tank.pos.x)){
-				x = wall.pos.x + wall.canvas.width - 30;
+				x = wall.pos.x + wall.canvas.width + 30;
 			}
 			if(!(tank.pos.y + tank.canvas.height < wall.pos.y)){
-				y = wall.pos.y + 30;
+				y = wall.pos.y - 30;
 			}
 			if(!(wall.pos.y + wall.canvas.height < tank.pos.y)){
-				y = wall.pos.y + wall.canvas.height - 30;
+				y = wall.pos.y + wall.canvas.height + 30;
 			}			
 		}
 	}
