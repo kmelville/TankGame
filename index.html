@@ -114,20 +114,21 @@ function draw() {
 	
 	wall.update();
 	
-	if (isColliding(tank,wall)){
-		if(!(tank.pos.x + tank.canvas.width < wall.pos.x)){
-			tank.posx -= 100;
+	with(tank.pos) {
+		if (isColliding(tank,wall)){
+			if(!(tank.pos.x + tank.canvas.width < wall.pos.x)){
+				tank.pos.x -= 100;
+			}
+			if(!(wall.pos.x + wall.canvas.width < tank.pos.x)){
+				tank.pos.x += 100;
+			}
+			if(!(tank.pos.y + tank.canvas.height < wall.pos.y)){
+				tank.pos.y -= 100;
+			}
+			if(!(wall.pos.y + wall.canvas.height < tank.pos.y)){
+				tank.pos.y += 100;
+			}			
 		}
-		if(!(wall.pos.x + wall.canvas.width < tank.pos.x)){
-			tank.posx += 100;
-		}
-		if(!(tank.pos.y + tank.canvas.height < wall.pos.y)){
-			tank.posy -= 100;
-		}
-		if(!(wall.pos.y + wall.canvas.height < tank.pos.y)){
-			tank.posy += 100;
-		}
-		
 	}
 	
 	with(tank.pos) {
