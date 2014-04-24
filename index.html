@@ -117,8 +117,8 @@ function draw() {
 	for (var i = 0; i < bullets.length; i++) {
 		var bullet = bullets[i];
 		if(checkBulletCollision(bullet,wall)){
-			//bullets.splice(i,1);
-			alert("whaaaattt!!!");
+			bullets.splice(i,1);
+			//alert("whaaaattt!!!");
 		}
 	}
 	
@@ -242,7 +242,7 @@ function isColliding(objA,objB) {
 }
 
 function checkBulletCollision(objA, objB){
-	return !(objA.pos.x + 5 < objB.posx || objB.posx + 32 < objA.pos.x || objA.pos.y + 5 < objB.posy || objB.posy + 32 < objA.pos.y);
+	return !(objA.pos.x + 5 < objB.posx - 10 || objB.pos.x + 16 < objA.pos.x || objA.pos.y + 5 < objB.pos.y - 10 || objB.pos.y + 16 < objA.pos.y);
 } 
 
 /*	
