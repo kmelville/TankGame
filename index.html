@@ -238,12 +238,12 @@ function makeBullet(touchX, touchY) {
 }
 
 function isColliding(objA,objB) {
-	if (typeof objA.canvas.width === 'Bullet'){
+	if (typeof objA.canvas.width === Bullet){
 		var AWidth = 5;
 		var AHeight = 5;
 		var BWidth = objB.canvas.width;
 		var BHeight = objB.canvas.height;
-	} else if(typeof objB.canvas.width === 'Bullet'){
+	} else if(typeof objB.canvas.width === Bullet){
 		var BWidth = 5;
 		var BHeight = 5;
 		var AWidth = objA.canvas.width;
