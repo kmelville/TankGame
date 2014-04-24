@@ -241,7 +241,7 @@ function isColliding(objA,objB) {
 
 function checkBulletCollision(index, element){
 	if(isColliding(element, wall)){
-		bullets.splice(index);
+		element.enabled = false;
 	}
 } 
 
