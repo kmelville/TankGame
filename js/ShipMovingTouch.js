@@ -1,6 +1,6 @@
 ShipMoving = function(x,y) {
 
-	this.life = 1;
+	var life = 1;
 	this.enabled = true; 
 	var pos = this.pos = new Vector2(x,y); 
 	this.angle = 0; 
@@ -36,7 +36,7 @@ ShipMoving = function(x,y) {
 
 	this.update = function() {
 		
-		if(this.life<0) this.enabled = false; 
+		if(life<0) this.enabled = false; 
 		//speed limit
 		var maxSpeed = 10; 
 		if(targetVel.isMagGreaterThan(maxSpeed)){
