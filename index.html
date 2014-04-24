@@ -117,7 +117,7 @@ function draw() {
 	//bullets.foreach(checkBulletCollision);
 	var index;
 	for (index = 0; index < bullets.length; ++index) {
-		//checkBulletCollision(index, bullets[index]);
+		checkBulletCollision(index, bullets[index]);
 	}
 	
 	
@@ -241,7 +241,7 @@ function isColliding(objA,objB) {
 
 function checkBulletCollision(index, element){
 	if(isColliding(element, wall)){
-		element.enabled = false;
+		//element.enabled = false;
 	}
 } 
 
