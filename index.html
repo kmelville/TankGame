@@ -117,7 +117,7 @@ function draw() {
 	//bullets.foreach(checkBulletCollision);
 	var index;
 	for (index = 0; index < bullets.length; ++index) {
-		checkBulletCollision(index, bullets.indexOf(index));
+		checkBulletCollision(index, bullets[index]);
 	}
 	
 	
