@@ -242,7 +242,7 @@ function isColliding(objA,objB) {
 }
 
 function checkBulletCollision(objA, objB){
-	return !(objA.pos.x + 5 < objB.posx - 10 || objB.pos.x + 16 < objA.pos.x || objA.pos.y + 5 < objB.pos.y - 10 || objB.pos.y + 16 < objA.pos.y);
+	return !(objA.pos.x + 5 < objB.pos.x || objB.pos.x + objB.canvas.width < objA.pos.x || objA.pos.y + 5 < objB.pos.y || objB.pos.y + objB.canvas.height < objA.pos.y);
 } 
 
 /*	
