@@ -105,7 +105,7 @@ function draw() {
 	c.clearRect(0,0,canvas.width, canvas.height); 
 
 	with(tank.pos) {
-		if !(isColliding(tank,wall)){
+		if (!(isColliding(tank,wall))){
 			tank.targetVel.copyFrom(leftVector);
 			tank.targetVel.multiplyEq(0.2);
 		}
