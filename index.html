@@ -123,7 +123,7 @@ function draw() {
 			//alert("whaaaattt!!!");
 		}
 		if(checkBulletCollision(bullet,enemy)){
-			enemy = null;
+			enemy.life -= 1;
 		}
 	}
 	
@@ -152,9 +152,7 @@ function draw() {
 	
 	tank.draw(theta);
 	wall.draw();
-	
 	enemy.draw(0);
-	
 	
 	for (var i = 0; i < bullets.length; i++) {
 		var bullet = bullets[i]; 
