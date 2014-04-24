@@ -1,6 +1,6 @@
 ShipMoving = function(x,y) {
 
-	var life = 1;
+	this.life = 1;
 	this.enabled = true; 
 	var pos = this.pos = new Vector2(x,y); 
 	this.angle = 0; 
