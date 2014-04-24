@@ -115,10 +115,12 @@ function draw() {
 	wall.update();
 	
 	//bullets.foreach(checkBulletCollision);
-	var index;
-	for (index = 0; index < bullets.length; ++index) {
-		checkBulletCollision(index, bullets[index]);
-	}
+	for (var i = 0; i < bullets.length; i++) {
+		var bullet = bullets[i];
+		if(isColliding(bullet,wall)){
+			alert("hit");
+		}
+	|
 	
 	
 	
