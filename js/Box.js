@@ -19,8 +19,11 @@ Box = function(x,y) {
 	canvas.style = "display:block; position:absolute; background-color:'#ff0000';"; 
 	canvas.style.webkitTransformOrigin = canvas.style.MozTransformOrigin = canvas.style.OTransformOrigin = canvas.style.transformOrigin = "30px 30px"; 
 	
+	
 	var c = canvas.getContext( '2d' );
 	this.c = c;  
+	var width = canvas.width;
+	var height = canvas.height;
 
 	this.update = function() {
 		//speed limit
