@@ -230,7 +230,7 @@ function makeBullet(touchX, touchY) {
 }
 
 function isColliding(objA,objB) {
-	return !(objA.pos.x + objA.canvas.width < objB.pos.x || objB.pos.x + objB.canvas.width < objA.pos.x || objA.pos.y + objA.canvas.height < objB.pos.y || objB.pos.y + objB.canvas.height < objA.pos.y);
+	return !(objA.pos.x + objA.canvas.width/2 < objB.pos.x - objB.canvas.width/2 || objB.pos.x + objB.canvas.width < objA.pos.x || objA.pos.y + objA.canvas.height/2 < objB.pos.y - objB.canvas.height/2 || objB.pos.y + objB.canvas./2 < objA.pos.y);
 }
 
 function checkBulletCollision(objA, objB){
