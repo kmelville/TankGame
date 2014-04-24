@@ -4,8 +4,8 @@ Box = function(x,y) {
 	var pos = this.pos = new Vector2(x,y);  
 	this.angle = 0; 
 	var vel = this.vel = new Vector2(0,0);
-	var width = 30;
-	var height = 30;
+	var width = 32;
+	var height = 32;
 	var targetVel = this.targetVel = new Vector2(0,0);  
 	var temp = new Vector2(0,0);
 	var boxImg = new Image();
@@ -16,8 +16,8 @@ Box = function(x,y) {
 	
 	var canvas = this.canvas = document.createElement("canvas"); 
 	
-	canvas.width = 30; 
-	canvas.height = 30;
+	canvas.width = 32; 
+	canvas.height = 32;
 	canvas.style = "display:block; position:absolute; background-color:'#ff0000';"; 
 	canvas.style.webkitTransformOrigin = canvas.style.MozTransformOrigin = canvas.style.OTransformOrigin = canvas.style.transformOrigin = "30px 30px"; 
 	
@@ -54,12 +54,12 @@ Box = function(x,y) {
 	// c = canvas context
 	this.draw = function() {		
 		
-		c.clearRect(0,0,30,30); 
+		c.clearRect(0,0,32,32); 
 		c.fillStyle = "rgba(255,255,255,0.5)";
 		//c.fillRect(0,0,60,60); 
 		c.save();
-		c.translate(15, 15); 
-		c.drawImage(boxImg, -15, -15);
+		c.translate(16, 16); 
+		c.drawImage(boxImg, -16, -16);
 		 
 
 		
