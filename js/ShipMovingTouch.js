@@ -4,6 +4,8 @@ ShipMoving = function(x,y) {
 	var pos = this.pos = new Vector2(x,y); 
 	this.angle = 0; 
 	var vel = this.vel = new Vector2(0,0);
+	var width = 60;
+	var height = 60;
 	var targetVel = this.targetVel = new Vector2(0,0);  
 	var temp = new Vector2(0,0); 
 	var tankBody = new Image();
@@ -28,10 +30,7 @@ ShipMoving = function(x,y) {
 	
 	var c = canvas.getContext( '2d' );
 	this.c = c;  
-	
-	
-	var width = canvas.width;
-	var height = canvas.height;	
+		
 	var counter = 0; 
 
 	this.update = function() {

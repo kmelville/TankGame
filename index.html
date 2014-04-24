@@ -238,7 +238,20 @@ function makeBullet(touchX, touchY) {
 }
 
 function isColliding(objA,objB) {
-	return !(objA.pos.x + objA.width < objB.pos.x || objB.pos.x + objB.width < objA.pos.x || objA.pos.y + objA.height < objB.pos.y || objB.pos.y + objB.height < objA.pos.y);
+	if (typeof objA.canvas.width === 'undefined'){
+		var AWidth = objA.width;
+		var AHeight = objA.height;
+	} else if(typeof objB.canvas.width === 'undefined'){
+		var BWidth = objB.width;
+		var BHeight = objB.height;
+	} else {
+		var AWidth = objA.canvas.width;
+		var AHeight = objA.canvas.height;
+		var BWidth = objB.canvas.width;
+		var BHeight = objB.canvas.height;
+	}
+	
+	return !(objA.pos.x + AWidth < objB.pos.x || objB.pos.x + BWidth < objA.pos.x || objA.pos.y + AHeight < objB.pos.y || objB.pos.y + BHeight < objA.pos.y);
 }
 
 function checkBulletCollision(index, element){
