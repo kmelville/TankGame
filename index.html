@@ -104,8 +104,13 @@ function draw() {
   
 	c.clearRect(0,0,canvas.width, canvas.height); 
 
-	tank.targetVel.copyFrom(leftVector);
-	tank.targetVel.multiplyEq(0.2);
+	with(tank.pos) {
+		if !(isColliding(tank,wall)){
+			tank.targetVel.copyFrom(leftVector);
+			tank.targetVel.multiplyEq(0.2);
+		}
+	}
+	
 	
 	tank.update();
 	
@@ -126,18 +131,7 @@ function draw() {
 	
 	with(tank.pos) {
 		if (isColliding(tank,wall)){
-			if(!(tank.pos.x + tank.canvas.width < wall.pos.x)){ //left side of wall
-				x = wall.pos.x;
-			}
-			if(!(wall.pos.x + wall.canvas.width < tank.pos.x)){ //right side of wall
-				x = wall.pos.x + wall.canvas.width;
-			}
-			if(!(tank.pos.y + tank.canvas.height < wall.pos.y)){ //top of wall
-				y = wall.pos.y;
-			}
-			if(!(wall.pos.y + wall.canvas.height < tank.pos.y)){ //bottom of wall
-				y = wall.pos.y + wall.canvas.height;
-			}			
+			
 		}
 	}
 	
