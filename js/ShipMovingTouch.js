@@ -1,6 +1,7 @@
 ShipMoving = function(x,y) {
 
 	var life = 1;
+	var enabled = true;
 	var pos = this.pos = new Vector2(x,y); 
 	this.angle = 0; 
 	var vel = this.vel = new Vector2(0,0);
@@ -34,8 +35,9 @@ ShipMoving = function(x,y) {
 	var counter = 0; 
 
 	this.update = function() {
-		//speed limit
+		
 		if(this.life<0) this.enabled = false; 
+		//speed limit
 		var maxSpeed = 10; 
 		if(targetVel.isMagGreaterThan(maxSpeed)){
 			targetVel.normalise(); 
