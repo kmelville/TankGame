@@ -117,7 +117,7 @@ function draw() {
 	for (var i = 0; i < bullets.length; i++) {
 		var bullet = bullets[i];
 		if(checkBulletCollision(bullet,wall)){
-			alert("hit");
+			bullet.enabled = false;
 		}
 	}
 	
