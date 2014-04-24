@@ -30,7 +30,8 @@ ShipMoving = function(x,y) {
 	this.c = c;  
 	
 	
-	 
+	var width = canvas.width;
+	var height = canvas.height;	
 	var counter = 0; 
 
 	this.update = function() {

@@ -238,12 +238,12 @@ function makeBullet(touchX, touchY) {
 }
 
 function isColliding(objA,objB) {
-	return !(objA.pos.x + objA.canvas.width < objB.pos.x || objB.pos.x + objB.canvas.width < objA.pos.x || objA.pos.y + objA.canvas.height < objB.pos.y || objB.pos.y + objB.canvas.height < objA.pos.y);
+	return !(objA.pos.x + objA.width < objB.pos.x || objB.pos.x + objB.width < objA.pos.x || objA.pos.y + objA.height < objB.pos.y || objB.pos.y + objB.height < objA.pos.y);
 }
 
 function checkBulletCollision(index, element){
 	if(isColliding(element, wall)){
-		//element.enabled = false;
+		element.enabled = false;
 	}
 } 
 

@@ -1,6 +1,8 @@
 Bullet = function(x, y, angle) {
 	
 	var speed = 10; 
+	var width = 5;
+	var height = 5;
 	
 	
 	
