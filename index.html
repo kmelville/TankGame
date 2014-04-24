@@ -123,7 +123,8 @@ function draw() {
 			//alert("whaaaattt!!!");
 		}
 		if(checkBulletCollision(bullet,enemy)){
-			enemy.life -= 1;
+			//enemy.life--;
+			enemy.enabled = false;
 		}
 	}
 	
