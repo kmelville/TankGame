@@ -128,8 +128,14 @@ function draw() {
 	
 	with(tank.pos) {
 		if (isColliding(wall,tank)){
+			var newX = x;
 			x = oldX;
-			y = oldY;
+			if(isColliding(wall,tank)){
+				x = newX;
+				y = oldY;
+			} else {	
+				x = oldX;
+			}
 		}
 	}
 	
@@ -230,7 +236,7 @@ function makeBullet(touchX, touchY) {
 }
 
 function isColliding(objA,objB) {
-	return !(objA.pos.x < objB.pos.x - objB.canvas.width/2 || objB.pos.x - objB.canvas.width/2 + objB.canvas.width < objA.pos.x || objA.pos.y < objB.pos.y - objB.canvas.height/2 || objB.pos.y - objB.canvas.height/2 + objB.canvas.height < objA.pos.y);
+	return !(objA.pos.x + objA.canvas.width/2 < objB.pos.x - objB.canvas.width/2 || objB.pos.x - objB.canvas.width/2 + objB.canvas.width < objA.pos.x - objA.canvas.width/2|| objA.pos.y + objA.canvas.height/2 < objB.pos.y - objB.canvas.height/2 || objB.pos.y - objB.canvas.height/2 + objB.canvas.height < objA.pos.y - objA.canvas.height/2);
 }
 
 function checkBulletCollision(objA, objB){
