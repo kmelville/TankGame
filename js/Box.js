@@ -65,8 +65,8 @@ Box = function(x,y) {
 		
 		c.restore();
 		
-		var posx = Math.round(pos.x-15); 
-		var posy = Math.round(pos.y-15); 
+		var posx = Math.round(pos.x-16); 
+		var posy = Math.round(pos.y-16); 
 		
 		var styleStr = "translate3d("+posx+"px, "+posy+"px, 0px) rotate("+this.angle+"deg)"; 
 		canvas.style.webkitTransform = canvas.style.MozTransform = canvas.style.OTransform = canvas.style.transform = styleStr; 
