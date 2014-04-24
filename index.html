@@ -114,10 +114,9 @@ function draw() {
 	
 	wall.update();
 	
-	//bullets.foreach(checkBulletCollision);
 	for (var i = 0; i < bullets.length; i++) {
 		var bullet = bullets[i];
-		if(isColliding(bullet,wall)){
+		if(checkBulletCollision(bullet,wall)){
 			alert("hit");
 		}
 	}
@@ -238,30 +237,11 @@ function makeBullet(touchX, touchY) {
 }
 
 function isColliding(objA,objB) {
-	if (typeof objA.canvas.width === Bullet){
-		var AWidth = 5;
-		var AHeight = 5;
-		var BWidth = objB.canvas.width;
-		var BHeight = objB.canvas.height;
-	} else if(typeof objB.canvas.width === Bullet){
-		var BWidth = 5;
-		var BHeight = 5;
-		var AWidth = objA.canvas.width;
-		var AHeight = objA.canvas.height;
-	} else {
-		var AWidth = objA.canvas.width;
-		var AHeight = objA.canvas.height;
-		var BWidth = objB.canvas.width;
-		var BHeight = objB.canvas.height;
-	}
-	
-	return !(objA.pos.x + AWidth < objB.pos.x || objB.pos.x + BWidth < objA.pos.x || objA.pos.y + AHeight < objB.pos.y || objB.pos.y + BHeight < objA.pos.y);
+	return !(objA.pos.x + objA.canvas.width < objB.pos.x || objB.pos.x + objB.canvas.width < objA.pos.x || objA.pos.y + objA.canvas.height < objB.pos.y || objB.pos.y + objB.canvas.height < objA.pos.y);
 }
 
-function checkBulletCollision(index, element){
-	if(isColliding(element, wall)){
-		element.enabled = false;
-	}
+function checkBulletCollision(objA, objB){
+	return !(objA.pos.x + objA.width < objB.pos.x || objB.pos.x + objB.canvas.width < objA.pos.x || objA.pos.y + objA.height < objB.pos.y || objB.pos.y + objB.canvas.height < objA.pos.y);
 } 
 
 /*	
