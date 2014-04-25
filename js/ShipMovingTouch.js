@@ -1,6 +1,6 @@
 ShipMoving = function(x,y) {
 
-	var life = this.life = 1;
+	var life = this.life = 0;
 	var enabled = this.enabled = true; 
 	var pos = this.pos = new Vector2(x,y); 
 	this.angle = 0; 
@@ -35,7 +35,7 @@ ShipMoving = function(x,y) {
 	var counter = 0; 
 
 	this.update = function() {
-		if(life<0){
+		if(this.life<0){
 			this.enabled = false; 
 		}
 		//speed limit

@@ -123,13 +123,13 @@ function draw() {
 			//alert("whaaaattt!!!");
 		}
 		if(checkBulletCollision(bullet,enemy)){
-			//enemy.life--;
+			enemy.life--;
 			bullets.splice(i,1);
-			enemy.enabled = false;
-			alert(enemy.enabled);
+			//enemy.enabled = false;
+			//alert(enemy.enabled);
 		}
 	}
-	
+	//enemy.life--;
 	enemy.update();
 	
 	with(tank.pos) {
@@ -153,11 +153,11 @@ function draw() {
 	}
 	
 	
+	
 	tank.draw(theta);
 	wall.draw();
-	if(enemy.enabled){
-		enemy.draw(0);
-	}
+	enemy.draw(0);
+	
 	for (var i = 0; i < bullets.length; i++) {
 		var bullet = bullets[i]; 
 		if(!bullet.enabled) continue; 
