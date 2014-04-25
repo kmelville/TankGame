@@ -36,7 +36,6 @@ ShipMoving = function(x,y) {
 
 	this.update = function() {		
 		if(this.life<0){
-			alert(this.life);
 			this.enabled = false; 
 		}
 		//speed limit

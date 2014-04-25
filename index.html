@@ -155,7 +155,10 @@ function draw() {
 	
 	tank.draw(theta);
 	wall.draw();
-	enemy.draw(0);
+	
+	if(enemy.enabled){
+		enemy.draw(0);
+	}
 	
 	for (var i = 0; i < bullets.length; i++) {
 		var bullet = bullets[i]; 
