@@ -113,7 +113,7 @@ function draw() {
 	
 	
 	tank.update();
-	
+	enemy.update();
 	wall.update();
 	
 	for (var i = 0; i < bullets.length; i++) {
@@ -124,13 +124,14 @@ function draw() {
 		}
 		if(checkBulletCollision(bullet,enemy)){
 			enemy.life--;
+			enemy.update();
 			bullets.splice(i,1);
 			//enemy.enabled = false;
 			//alert(enemy.enabled);
 		}
 	}
 	//enemy.life--;
-	enemy.update();
+	
 	
 	with(tank.pos) {
 		if (isColliding(wall,tank)){
