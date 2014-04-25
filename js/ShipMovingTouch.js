@@ -1,7 +1,7 @@
 ShipMoving = function(x,y) {
 
-	var life = 1;
-	var enabled = true; 
+	var life = this.life = 1;
+	var enabled = this.enabled = true; 
 	var pos = this.pos = new Vector2(x,y); 
 	this.angle = 0; 
 	var vel = this.vel = new Vector2(0,0);
@@ -35,7 +35,9 @@ ShipMoving = function(x,y) {
 	var counter = 0; 
 
 	this.update = function() {
-		if(life<0) this.enabled = false; 
+		if(life<0){
+			this.enabled = false; 
+		}
 		//speed limit
 		var maxSpeed = 10; 
 		if(targetVel.isMagGreaterThan(maxSpeed)){
@@ -65,7 +67,7 @@ ShipMoving = function(x,y) {
 	// c = canvas context
 	this.draw = function(theta) {		
 		
-		if(!enabled) return;
+		if(!this.enabled) return;
 		c.clearRect(0,0,60,60); 
 		c.fillStyle = "rgba(255,255,255,0.5)";
 		//c.fillRect(0,0,60,60); 
