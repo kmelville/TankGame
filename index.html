@@ -113,7 +113,7 @@ function draw() {
 	
 	
 	tank.update();
-	enemy.update();
+	
 	wall.update();
 	
 	for (var i = 0; i < bullets.length; i++) {
@@ -130,7 +130,7 @@ function draw() {
 		}
 	}
 	
-	
+	enemy.update();
 	
 	with(tank.pos) {
 		if (isColliding(wall,tank)){
@@ -158,7 +158,6 @@ function draw() {
 	if(enemy.enabled){
 		enemy.draw(0);
 	}
-	
 	for (var i = 0; i < bullets.length; i++) {
 		var bullet = bullets[i]; 
 		if(!bullet.enabled) continue; 
