@@ -34,7 +34,7 @@
 </head>
 <body onload="init();">
 <script src="js/Vector2.js"></script>
-<script src="js/ShipMovingTouch.js"></script>
+<script src="js/Tank.js"></script>
 <script src="js/BulletSebs.js"></script>
 <script src="js/Box.js"></script>
 <script>
@@ -56,9 +56,9 @@ var mouseX, mouseY,
 	// is this running in a touch capable environment?
 	touchable = 'createTouch' in document,
 	touches = [], // array of touch vectors
-	tank = new ShipMoving(halfWidth, halfHeight),
+	tank = new TankMoving(halfWidth, halfHeight),
 	wall = new Box(width*3/4,halfHeight),
-	enemy = new ShipMoving(halfWidth-60, halfHeight-60),
+	enemy = new TankMoving(halfWidth-60, halfHeight-60),
 	theta = 0,
 	bullets = [],
 	spareBullets = [];
@@ -119,6 +119,7 @@ function draw() {
 		var bullet = bullets[i];
 		if(checkBulletCollision(bullet,wall)){
 			bullets.splice(i,1);
+                        wall.lives--;
 			//alert("whaaaattt!!!");
 		}
 		if(checkBulletCollision(bullet,enemy)){

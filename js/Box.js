@@ -6,6 +6,7 @@ Box = function(x,y) {
 	var vel = this.vel = new Vector2(0,0);
 	var width = 32;
 	var height = 32;
+        var lives = 1;
 	var targetVel = this.targetVel = new Vector2(0,0);  
 	var temp = new Vector2(0,0);
 	var boxImg = new Image();
@@ -24,8 +25,9 @@ Box = function(x,y) {
 	
 	var c = canvas.getContext( '2d' );
 	this.c = c;  
-
+        this.lives = lives;
 	this.update = function() {
+            if(lives>0){
 		//speed limit
 		var maxSpeed = 10; 
 		if(targetVel.isMagGreaterThan(maxSpeed)){
@@ -48,7 +50,8 @@ Box = function(x,y) {
 		if(vel.isMagGreaterThan(0)) this.angle = vel.angle();
 		 
 		//if(thrustSize>0) thrustSize--; 
-		thrustSize = vel.magnitude(); 
+		thrustSize = vel.magnitude();
+            }
 	};
 
 	// c = canvas context

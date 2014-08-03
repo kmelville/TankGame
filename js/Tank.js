@@ -1,4 +1,4 @@
-ShipMoving = function(x,y) {
+TankMoving = function(x,y) {
 
 	var life = this.life = 0;
 	var enabled = this.enabled = true; 
@@ -32,7 +32,8 @@ ShipMoving = function(x,y) {
 	var c = canvas.getContext( '2d' );
 	this.c = c;  
 		
-	var counter = 0; 
+	var counter = 0;
+        
 
 	this.update = function() {		
 		if(this.life<0){
