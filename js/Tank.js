@@ -1,6 +1,6 @@
 TankMoving = function(x,y) {
 
-	var life = this.life = 0;
+	var life = this.life = 1;
 	var pos = this.pos = new Vector2(x,y); 
 	this.angle = 0; 
 	var vel = this.vel = new Vector2(0,0);

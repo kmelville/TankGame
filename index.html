@@ -119,7 +119,7 @@ function draw() {
 		var bullet = bullets[i];
 		if(checkBulletCollision(bullet,wall)){
 			bullets.splice(i,1);
-                        wall.lives--;
+                        wall.life--;
 			//alert("whaaaattt!!!");
 		}
 		if(checkBulletCollision(bullet,enemy)){
