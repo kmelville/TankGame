@@ -1,7 +1,6 @@
 TankMoving = function(x,y) {
 
 	var life = this.life = 0;
-	var enabled = this.enabled = true; 
 	var pos = this.pos = new Vector2(x,y); 
 	this.angle = 0; 
 	var vel = this.vel = new Vector2(0,0);
@@ -34,6 +33,13 @@ TankMoving = function(x,y) {
 		
 	var counter = 0;
         
+        this.isEnabled = function() {
+            if(this.life<0){
+		return false; 
+            } else {
+                return true;
+            }
+        };
 
 	this.update = function() {		
 		if(this.life<0){

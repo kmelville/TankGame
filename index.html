@@ -112,9 +112,9 @@ function draw() {
 
 	
 	
-	tank.update();
-	enemy.update();
-	wall.update();
+	if(tank.isEnabled()){tank.update();};
+	if(enemy.isEnabled()){enemy.update();};
+	if(wall.isEnabled()){wall.update();};
 	for (var i = 0; i < bullets.length; i++) {
 		var bullet = bullets[i];
 		if(checkBulletCollision(bullet,wall)){
