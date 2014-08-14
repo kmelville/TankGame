@@ -51,7 +51,7 @@ Box = function(x,y) {
             thrustSize = vel.magnitude();
 	};
         
-        this.destroy = function (frameDelay) {
+        this.destroy = function () {
                 // draw a white background to clear canvas
                 c.fillStyle = "#FFF";
                 c.fillRect(0, 0, c.canvas.width, c.canvas.height);
@@ -61,7 +61,7 @@ Box = function(x,y) {
                 {
                         var particle = particles[i];
 
-                        particle.update(frameDelay);
+                        particle.update(30);
                         particle.draw(c);
                 }
         };
