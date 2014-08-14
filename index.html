@@ -103,6 +103,39 @@ function init(){
 	
 }
 
+        /* Array of particles (global variable)
+        */
+        var particles = [];
+
+        /*
+         * Basic Explosion, all particles move and shrink at the same speed.
+         * 
+         * Parameter : explosion center
+         */
+function createBasicExplosion (x, y)
+        {
+	// creating 4 particles that scatter at 0, 90, 180 and 270 degrees
+	for (var angle=0; angle<360; angle+=90)
+	{
+		var particle = new Particle();
+
+		// particle will start at explosion center
+		particle.x = x;
+		particle.y = y;
+
+		particle.color = "#FF0000";
+
+		var speed = 50.0;
+
+		// velocity is rotated by "angle"
+		particle.velocityX = speed * Math.cos(angle * Math.PI / 180.0);
+		particle.velocityY = speed * Math.sin(angle * Math.PI / 180.0);
+
+		// adding the newly created particle to the "particles" array
+		particles.push(particle);
+	}
+};
+
 function draw() {
 	var oldX = tank.pos.x;
 	var oldY = tank.pos.y;
@@ -120,9 +153,17 @@ function draw() {
 	if(wall.isEnabled()){
             wall.update();
         } else {
-            wall.destroy();
+            createBasicExplosion(wall.pos.x,wall.pos.y);
+            alert("wall destroyed"+wall.pos.x);
         }
         
+        for (var i=0; i<particles.length; i++)
+                {
+                        var particle = particles[i];
+
+                        particle.update(30);
+                        particle.draw(c);
+                }
         
         
 	for (var i = 0; i < bullets.length; i++) {
