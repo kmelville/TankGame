@@ -115,15 +115,16 @@ function draw() {
 
 	
 	
-	if(tank.isEnabled()){tank.update();} else {
-            delete tank;
-        };
-	if(enemy.isEnabled()){enemy.update();} else {
-            delete enemy;
-        };
-	if(wall.isEnabled()){wall.update();}else {
-            delete wall;
-        };
+	tank.update();
+	enemy.update();
+	if(wall.isEnabled()){
+            wall.update();
+        } else {
+            wall.destroy();
+        }
+        
+        
+        
 	for (var i = 0; i < bullets.length; i++) {
 		var bullet = bullets[i];
 		if(checkBulletCollision(bullet,wall)){
@@ -259,6 +260,9 @@ function isColliding(objA,objB) {
 function checkBulletCollision(objA, objB){
 	return !(objA.pos.x + 5 < objB.pos.x - objB.canvas.width/2 || objB.pos.x - objB.canvas.width/2 + objB.canvas.width < objA.pos.x || objA.pos.y + 5 < objB.pos.y - objB.canvas.height/2 || objB.pos.y - objB.canvas.height/2 + objB.canvas.height < objA.pos.y);
 } 
+
+
+
 
 /*	
  *	Touch event (e) properties : 

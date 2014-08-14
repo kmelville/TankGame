@@ -42,9 +42,7 @@ TankMoving = function(x,y) {
         };
 
 	this.update = function() {		
-		if(this.life<0){
-			this.enabled = false; 
-		}
+            if(this.isEnabled()){
 		//speed limit
 		var maxSpeed = 10; 
 		if(targetVel.isMagGreaterThan(maxSpeed)){
@@ -68,6 +66,9 @@ TankMoving = function(x,y) {
 		 
 		//if(thrustSize>0) thrustSize--; 
 		thrustSize = vel.magnitude(); 
+            } else {
+                
+            }
 	};
 	
 
