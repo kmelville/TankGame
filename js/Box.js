@@ -53,8 +53,8 @@ Box = function(x,y) {
         
         this.destroy = function (frameDelay) {
                 // draw a white background to clear canvas
-                context2D.fillStyle = "#FFF";
-                context2D.fillRect(0, 0, context2D.canvas.width, context2D.canvas.height);
+                c.fillStyle = "#FFF";
+                c.fillRect(0, 0, c.canvas.width, c.canvas.height);
 
                 // update and draw particles
                 for (var i=0; i<particles.length; i++)
@@ -62,7 +62,7 @@ Box = function(x,y) {
                         var particle = particles[i];
 
                         particle.update(frameDelay);
-                        particle.draw(context2D);
+                        particle.draw(c);
                 }
         };
 
