@@ -37,6 +37,7 @@
 <script src="js/Tank.js"></script>
 <script src="js/BulletSebs.js"></script>
 <script src="js/Box.js"></script>
+<script src="js/Particle.js"></script>
 <script>
 
 var canvas,
@@ -153,8 +154,8 @@ function draw() {
 	if(wall.isEnabled()){
             wall.update();
         } else {
-            alert("wall destroyed"+wall.pos.x);
-            createBasicExplosion(wall.pos.x,wall.pos.y);
+                    //alert("wall destroyed"+wall.pos.x);
+            createBasicExplosion(wall.pos.x, wall.pos.y);
             
         }
         
