@@ -153,8 +153,9 @@ function draw() {
 	if(wall.isEnabled()){
             wall.update();
         } else {
-            createBasicExplosion(wall.pos.x,wall.pos.y);
             alert("wall destroyed"+wall.pos.x);
+            createBasicExplosion(wall.pos.x,wall.pos.y);
+            
         }
         
         for (var i=0; i<particles.length; i++)
