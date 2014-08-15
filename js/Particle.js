@@ -29,6 +29,7 @@ function Particle ()
 	this.draw = function(context2D)
 	{
 		// translating the 2D context to the particle coordinates
+                context2D.clearRect(0,0,40,40);
 		context2D.save();
 		context2D.translate(this.x, this.y);
 		context2D.scale(this.scale, this.scale);
