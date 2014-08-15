@@ -29,6 +29,51 @@
                 text-align:center;
                 background-color:#ff0000;
             }
+            .button {
+            border-top: 1px solid #15557d;
+            background: #3b6987;
+            background: -webkit-gradient(linear, left top, left bottom, from(#18122b), to(#3b6987));
+            background: -webkit-linear-gradient(top, #18122b, #3b6987);
+            background: -moz-linear-gradient(top, #18122b, #3b6987);
+            background: -ms-linear-gradient(top, #18122b, #3b6987);
+            background: -o-linear-gradient(top, #18122b, #3b6987);
+            padding: 10.5px 21px;
+            -webkit-border-radius: 9px;
+            -moz-border-radius: 9px;
+            border-radius: 9px;
+            -webkit-box-shadow: rgba(0,0,0,1) 0 1px 0;
+            -moz-box-shadow: rgba(0,0,0,1) 0 1px 0;
+            box-shadow: rgba(0,0,0,1) 0 1px 0;
+            text-shadow: rgba(0,0,0,.4) 0 1px 0;
+            color: white;
+            font-size: 18px;
+            font-family: Georgia, Serif;
+            text-decoration: none;
+            text-align: center;
+            width: 300px;
+            margin: 0 auto;
+            }
+         .button:hover {
+            border-top-color: #28597a;
+            background: #28597a;
+            color: #ccc;
+            }
+         .button:active {
+            border-top-color: #1b435e;
+            background: #1b435e;
+         }
+         .button a {
+             color: white;   
+          }
+          .menu {
+              margin-top: 30%;         
+          }
+          .box {
+              position:relative;
+          }
+          #complete {
+              display:none;
+          }
         </style>
 
     </head>
@@ -203,6 +248,7 @@
                     createExplosion(wall.pos.x, wall.pos.y, "#FFA318");
                     //createBasicExplosion(wall.pos.x, wall.pos.y);
                     wall.exploded = true;
+                    $('#complete').show();
                 }
                 for (var i = 0; i < particles.length; i++)
                 {
@@ -463,5 +509,11 @@
 
 
         </script>
+        
+        <div id="complete" class="box">
+            <div class="menu">
+                <a href="index.html"><div class="button">Back to Menu</div></a>
+            </div>
+        </div> 
     </body>
 </html>
