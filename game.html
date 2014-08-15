@@ -240,13 +240,13 @@
                 wall.update();
                 wall.draw();
 
-                if(!wall.exploded){
+                if(!wall.isEnabled() && !wall.exploded){
                     createExplosion(wall.pos.x, wall.pos.y, "#525252");
 
                     createExplosion(wall.pos.x, wall.pos.y, "#FFA318");
                     //createBasicExplosion(wall.pos.x, wall.pos.y);
                     wall.exploded = true;
-                    document.getElementById('complete').style.display='show';
+                    document.getElementById('complete').style.display='block';
                 }
                 for (var i = 0; i < particles.length; i++)
                 {
