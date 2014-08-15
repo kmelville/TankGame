@@ -158,14 +158,12 @@ function draw() {
             createBasicExplosion(wall.pos.x, wall.pos.y);
             
         }
-        wall.c.clearRect(0,0,32,32); 
-	wall.c.fillStyle = "rgba(255,255,255,0.5)";
         for (var i=0; i<particles.length; i++)
                 {
                         var particle = particles[i];
 
                         particle.update(30);
-                        particle.draw(wall.c);
+                        particle.draw(c);
                 }
         
         
