@@ -151,10 +151,10 @@ function draw() {
 	
 	tank.update();
 	enemy.update();
+        wall.update();
         
-	if(wall.isEnabled()){
-            wall.update();
-            wall.draw();
+	if(wall.isEnabled()){        
+            //wall.draw();
         } else {
                     //alert("wall destroyed"+wall.pos.x);
             createBasicExplosion(wall.pos.x, wall.pos.y);
