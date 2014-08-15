@@ -60,26 +60,29 @@ Box = function(x,y) {
         };
         
 	// c = canvas context
-	this.draw = function() {		
-		
-		c.clearRect(0,0,32,32); 
-		c.fillStyle = "rgba(255,255,255,0.5)";
-		//c.fillRect(0,0,60,60); 
-		c.save();
-		c.translate(16, 16); 
-		c.drawImage(boxImg, -16, -16);
-		 
+	this.draw = function() {	
+             
+            c.clearRect(0,0,32,32); 
+            c.fillStyle = "rgba(255,255,255,0.5)";
+            //c.fillRect(0,0,60,60); 
+            if(!this.isEnabled()){
+                return;
+            }  
+            c.save();
+            c.translate(16, 16); 
+            c.drawImage(boxImg, -16, -16);
 
-		
-		c.restore();
-		
-		var posx = Math.round(pos.x-16); 
-		var posy = Math.round(pos.y-16); 
-		
-		var styleStr = "translate3d("+posx+"px, "+posy+"px, 0px) rotate("+this.angle+"deg)"; 
-		canvas.style.webkitTransform = canvas.style.MozTransform = canvas.style.OTransform = canvas.style.transform = styleStr; 
-		//console.log(styleStr); 
-		
+
+
+            c.restore();
+
+            var posx = Math.round(pos.x-16); 
+            var posy = Math.round(pos.y-16); 
+
+            var styleStr = "translate3d("+posx+"px, "+posy+"px, 0px) rotate("+this.angle+"deg)"; 
+            canvas.style.webkitTransform = canvas.style.MozTransform = canvas.style.OTransform = canvas.style.transform = styleStr; 
+            //console.log(styleStr); 
+
 		
 	};
 
