@@ -62,7 +62,7 @@ Box = function(x,y) {
         
 	// c = canvas context
 	this.draw = function() {	
-             
+            if(this.exploded) return;
             c.clearRect(0,0,32,32); 
             c.fillStyle = "rgba(255,255,255,0.5)";
             //c.fillRect(0,0,60,60); 

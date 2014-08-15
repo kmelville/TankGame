@@ -193,7 +193,7 @@
                 enemy.update();
 
 
-                if (wall.isEnabled() && !wall.exploded) {
+                if (wall.isEnabled()) {
                     wall.update();
                     wall.draw();
                 } else if(!wall.exploded){
@@ -207,7 +207,7 @@
                 {
                     var particle = particles[i];
 
-                    particle.update(15);
+                    particle.update(30);
                     particle.draw(c);
                 }
 
