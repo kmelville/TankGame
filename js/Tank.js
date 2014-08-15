@@ -75,7 +75,7 @@ TankMoving = function(x,y) {
 	// c = canvas context
 	this.draw = function(theta) {		
 		
-		if(!this.enabled) return;
+		
 		c.clearRect(0,0,60,60); 
 		c.fillStyle = "rgba(255,255,255,0.5)";
 		//c.fillRect(0,0,60,60); 
