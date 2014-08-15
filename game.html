@@ -196,7 +196,7 @@
                 if (wall.isEnabled()) {
                     wall.update();
                     wall.draw();
-                } else if(!wall.isExploded()){
+                } else if(!wall.exploded){
                     createExplosion(wall.pos.x, wall.pos.y, "#525252");
 
                     createExplosion(wall.pos.x, wall.pos.y, "#FFA318");
