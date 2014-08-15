@@ -65,8 +65,8 @@ Box = function(x,y) {
             
             c.clearRect(0,0,32,32); 
             c.fillStyle = "rgba(255,255,255,0.5)";
-            if(this.exploded) return;
             c.fillRect(0,0,60,60); 
+            if(this.exploded) return;
             c.save();
             c.translate(16, 16); 
             c.drawImage(boxImg, -16, -16);

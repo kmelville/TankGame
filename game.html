@@ -192,11 +192,11 @@
 
                 tank.update();
                 enemy.update();
-
-
-                if (wall.isEnabled()) {
                     wall.update();
                     wall.draw();
+
+                if (wall.isEnabled()) {
+                    
                 } else if(!wall.exploded){
                     createExplosion(wall.pos.x, wall.pos.y, "#525252");
 
