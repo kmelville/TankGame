@@ -237,7 +237,7 @@
 
 
                 tank.update();
-                enemy.update();
+                //enemy.update();
                 wall.update();
                 wall.draw();
 
@@ -268,12 +268,12 @@
                         }
                     }
 
-                    if (checkBulletCollision(bullet, enemy)) {
-                        enemy.life--;
-                        bullets.splice(i, 1);
-                        //enemy.enabled = false;
-                        //alert(enemy.life);
-                    }
+                    //if (checkBulletCollision(bullet, enemy)) {
+                    //    enemy.life--;
+                    //    bullets.splice(i, 1);
+                    //    //enemy.enabled = false;
+                    //    //alert(enemy.life);
+                    //}
                 }
                 //enemy.life--;
 
@@ -308,9 +308,9 @@
                 tank.draw(theta);
 
 
-                if (enemy.isEnabled()) {
-                    enemy.draw(0);
-                }
+                //if (enemy.isEnabled()) {
+                //    enemy.draw(0);
+                //}
 
                 for (var i = 0; i < bullets.length; i++) {
                     var bullet = bullets[i];
