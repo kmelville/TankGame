@@ -193,7 +193,7 @@
                 enemy.update();
 
 
-                if (wall.isEnabled()) {
+                if (wall.isEnabled() && !wall.exploded) {
                     wall.update();
                     wall.draw();
                 } else if(!wall.exploded){

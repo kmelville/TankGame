@@ -60,19 +60,12 @@ Box = function(x,y) {
             }
         };
         
-        this.isExploded = function() {
-            return exploded;
-        };
-        
 	// c = canvas context
 	this.draw = function() {	
              
             c.clearRect(0,0,32,32); 
             c.fillStyle = "rgba(255,255,255,0.5)";
             //c.fillRect(0,0,60,60); 
-            if(!this.isEnabled()){
-                return;
-            }  
             c.save();
             c.translate(16, 16); 
             c.drawImage(boxImg, -16, -16);
