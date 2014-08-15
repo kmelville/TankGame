@@ -72,7 +72,7 @@
               position:relative;
           }
           #complete {
-              display:none;
+              visibility: hidden;
           }
         </style>
 
@@ -248,7 +248,7 @@
                     createExplosion(wall.pos.x, wall.pos.y, "#FFA318");
                     //createBasicExplosion(wall.pos.x, wall.pos.y);
                     wall.exploded = true;
-                    document('#complete').show();
+                    document.getElementById('complete').style.visibility='visible';
                 }
                 for (var i = 0; i < particles.length; i++)
                 {
