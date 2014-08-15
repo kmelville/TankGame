@@ -151,10 +151,10 @@ function draw() {
 	
 	tank.update();
 	enemy.update();
-        //wall.update();
+        wall.update();
         
 	if(wall.isEnabled()){        
-            //wall.draw();
+            wall.draw();
         } else {
                     //alert("wall destroyed"+wall.pos.x);
             createBasicExplosion(wall.pos.x, wall.pos.y);
@@ -171,11 +171,14 @@ function draw() {
         
 	for (var i = 0; i < bullets.length; i++) {
 		var bullet = bullets[i];
-		if(checkBulletCollision(bullet,wall)){
-			bullets.splice(i,1);
-                        wall.life--;
-			//alert("whaaaattt!!!");
-		}
+		if(wall.isEnabled()){
+                    if(checkBulletCollision(bullet,wall)){
+                            bullets.splice(i,1);
+                            wall.life--;
+                            //alert("whaaaattt!!!");
+                    }
+                }
+                
 		if(checkBulletCollision(bullet,enemy)){
 			enemy.life--;
 			bullets.splice(i,1);
