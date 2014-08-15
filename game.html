@@ -1,0 +1,414 @@
+<!doctype html>
+<html lang=en>
+<head>
+<meta charset=utf-8>
+<meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0, maximum-scale=1.0," /> 
+<title>Game</title>
+<style type="text/css"> 
+	
+	* {
+	  -webkit-touch-callout: none; /* prevent callout to copy image, etc when tap to hold */
+	  -webkit-text-size-adjust: none; /* prevent webkit from resizing text to fit */
+	/* make transparent link selection, adjust last value opacity 0 to 1.0 */
+	  -webkit-tap-highlight-color: rgba(0,0,0,0); 
+	  -webkit-user-select: none; /* prevent copy paste, to allow, change 'none' to 'text' */
+	  -webkit-tap-highlight-color: rgba(0,0,0,0); 
+	}
+	
+	body {
+		background: url('images/background.jpg') no-repeat;
+		background-size: cover;
+		margin: 0px;
+	}
+	canvas {
+		display:block; 
+		position:absolute; 
+	}
+	.container {
+		width:auto;
+		text-align:center;
+		background-color:#ff0000;
+	}
+</style>
+
+</head>
+<body onload="init();">
+<script src="js/Vector2.js"></script>
+<script src="js/Tank.js"></script>
+<script src="js/BulletSebs.js"></script>
+<script src="js/Box.js"></script>
+<script src="js/Particle.js"></script>
+<script>
+
+var canvas,
+ 	c, // c is the canvas' context 2D
+	container, 
+	halfWidth, 
+	halfHeight,
+	leftTouchID = -1, 
+	leftTouchPos = new Vector2(0,0),
+	leftTouchStartPos = new Vector2(0,0),
+	leftVector = new Vector2(0,0); 
+	
+
+setupCanvas();
+
+var mouseX, mouseY, 
+	// is this running in a touch capable environment?
+	touchable = 'createTouch' in document,
+	touches = [], // array of touch vectors
+	tank = new TankMoving(halfWidth, halfHeight),
+	wall = new Box(width*3/4,halfHeight),
+	enemy = new TankMoving(halfWidth-60, halfHeight-60),
+	theta = 0,
+        objects = [],
+	bullets = [],
+	spareBullets = [];
+	
+	objects.concat(wall);
+        objects.concat(enemy);
+        
+document.body.appendChild(tank.canvas);
+document.body.appendChild(wall.canvas);
+document.body.appendChild(enemy.canvas);
+
+setInterval(draw, 1000/35); 
+
+
+if(touchable) {
+	canvas.addEventListener( 'touchstart', onTouchStart, false );
+	canvas.addEventListener( 'touchmove', onTouchMove, false );
+	canvas.addEventListener( 'touchend', onTouchEnd, false );
+	window.onorientationchange = resetCanvas;  
+	window.onresize = resetCanvas;  
+} else {
+	
+	canvas.addEventListener( 'mousemove', onMouseMove, false );
+}
+
+function resetCanvas (e) {  
+ 	// resize the canvas - but remember - this clears the canvas too. 
+  	canvas.width = window.innerWidth; 
+	canvas.height = window.innerHeight;
+	
+	halfWidth = canvas.width/2; 
+	halfHeight = canvas.height/2;
+	width = canvas.width;
+	height = canvas.height;
+	
+	//make sure we scroll to the top left. 
+	window.scrollTo(0,0); 
+}
+
+function init(){
+	
+}
+
+        /* Array of particles (global variable)
+        */
+        var particles = [];
+
+        /*
+         * Basic Explosion, all particles move and shrink at the same speed.
+         * 
+         * Parameter : explosion center
+         */
+function createBasicExplosion (x, y)
+        {
+	// creating 4 particles that scatter at 0, 90, 180 and 270 degrees
+	for (var angle=0; angle<360; angle+=90)
+	{
+		var particle = new Particle();
+
+		// particle will start at explosion center
+		particle.x = x;
+		particle.y = y;
+
+		particle.color = "#FF0000";
+
+		var speed = 50.0;
+
+		// velocity is rotated by "angle"
+		particle.velocityX = speed * Math.cos(angle * Math.PI / 180.0);
+		particle.velocityY = speed * Math.sin(angle * Math.PI / 180.0);
+
+		// adding the newly created particle to the "particles" array
+		particles.push(particle);
+	}
+};
+
+function draw() {
+	var oldX = tank.pos.x;
+	var oldY = tank.pos.y;
+	c.clearRect(0,0,canvas.width, canvas.height); 
+	
+
+
+	tank.targetVel.copyFrom(leftVector);
+	tank.targetVel.multiplyEq(0.2);
+
+	
+	
+	tank.update();
+	enemy.update();
+	if(wall.isEnabled()){
+            wall.update();
+        } else {
+                    //alert("wall destroyed"+wall.pos.x);
+            createBasicExplosion(wall.pos.x, wall.pos.y);
+            
+        }
+        wall.c.clearRect(0,0,32,32); 
+	wall.c.fillStyle = "rgba(255,255,255,0.5)";
+        for (var i=0; i<particles.length; i++)
+                {
+                        var particle = particles[i];
+
+                        particle.update(30);
+                        particle.draw(wall.c);
+                }
+        
+        
+	for (var i = 0; i < bullets.length; i++) {
+		var bullet = bullets[i];
+		if(checkBulletCollision(bullet,wall)){
+			bullets.splice(i,1);
+                        wall.life--;
+			//alert("whaaaattt!!!");
+		}
+		if(checkBulletCollision(bullet,enemy)){
+			enemy.life--;
+			bullets.splice(i,1);
+			//enemy.enabled = false;
+			//alert(enemy.life);
+		}
+	}
+	//enemy.life--;
+	
+	
+	with(tank.pos) {
+		if (isColliding(wall,tank)){
+			var newX = x;
+			x = oldX;
+			if(isColliding(wall,tank)){
+				x = newX;
+				y = oldY;
+			} else {	
+				x = oldX;
+			}
+		}
+	}
+	
+	with(tank.pos) {
+		if(x<(30)) x = 30; 
+		else if(x>canvas.width-30) x = canvas.width-30; 
+		if(y<30) y = 30; 
+		else if (y>canvas.height-30) y = canvas.height-30; 
+	}
+	
+	
+	
+	tank.draw(theta);
+	wall.draw();
+	
+	if(enemy.enabled){
+		enemy.draw(0);
+	}
+	
+	for (var i = 0; i < bullets.length; i++) {
+		var bullet = bullets[i]; 
+		if(!bullet.enabled) continue; 
+		bullet.update(); 
+		bullet.draw(c); 
+		if(!bullet.enabled)
+		{
+			spareBullets.push(bullet); 
+			
+		}
+		
+		
+	}
+	
+	if(touchable) {
+	
+		for(var i=0; i<touches.length; i++) {
+			
+			var touch = touches[i]; 
+			
+			if(touch.identifier == leftTouchID){
+				c.beginPath(); 
+				c.strokeStyle = "blue"; 
+				c.lineWidth = 6; 
+				c.arc(leftTouchStartPos.x, leftTouchStartPos.y, 40,0,Math.PI*2,true); 
+				c.stroke();
+				c.beginPath(); 
+				c.strokeStyle = "blue"; 
+				c.lineWidth = 2; 
+				c.arc(leftTouchStartPos.x, leftTouchStartPos.y, 60,0,Math.PI*2,true); 
+				c.stroke();
+				c.beginPath(); 
+				c.strokeStyle = "blue"; 
+				c.arc(leftTouchPos.x, leftTouchPos.y, 40, 0,Math.PI*2, true); 
+				c.stroke(); 
+				
+			} else {
+				
+				c.beginPath(); 
+				c.fillStyle = "white";
+				//c.fillText("touch id : "+touch.identifier+" x:"+touch.clientX+" y:"+touch.clientY, touch.clientX+30, touch.clientY-30); 
+
+				c.beginPath(); 
+				c.strokeStyle = "red";
+				c.lineWidth = "6";
+				c.arc(touch.clientX, touch.clientY, 40, 0, Math.PI*2, true); 
+				c.stroke();
+			}
+		}
+	} else {
+		
+		c.fillStyle	 = "white"; 
+		c.fillText("mouse : "+mouseX+", "+mouseY, mouseX, mouseY); 
+		
+	}
+	//c.fillText("hello", 0,0); 
+	
+}
+
+function makeBullet(touchX, touchY) {
+	
+	var bullet;
+	    theta = Math.atan2(touchY - tank.pos.y, touchX - tank.pos.x);
+	if (theta < 0)
+		theta += 2 * Math.PI;
+	var angle = theta * (180 / Math.PI);
+	
+	if(spareBullets.length>0) {
+		bullet = spareBullets.pop(); 
+		bullet.reset(tank.pos.x, tank.pos.y, angle);
+	} else {
+		
+		bullet = new Bullet(tank.pos.x, tank.pos.y, angle); 
+		bullets.push(bullet);
+
+	}
+	
+	//bullet.vel.plusEq(tank.vel); 
+	
+	
+}
+
+function isColliding(objA,objB) {
+	return !(objA.pos.x + objA.canvas.width/2 < objB.pos.x - objB.canvas.width/2 || objB.pos.x - objB.canvas.width/2 + objB.canvas.width < objA.pos.x - objA.canvas.width/2|| objA.pos.y + objA.canvas.height/2 < objB.pos.y - objB.canvas.height/2 || objB.pos.y - objB.canvas.height/2 + objB.canvas.height < objA.pos.y - objA.canvas.height/2);
+}
+
+function checkBulletCollision(objA, objB){
+	return !(objA.pos.x + 5 < objB.pos.x - objB.canvas.width/2 || objB.pos.x - objB.canvas.width/2 + objB.canvas.width < objA.pos.x || objA.pos.y + 5 < objB.pos.y - objB.canvas.height/2 || objB.pos.y - objB.canvas.height/2 + objB.canvas.height < objA.pos.y);
+} 
+
+
+
+
+/*	
+ *	Touch event (e) properties : 
+ *	e.touches: 			Array of touch objects for every finger currently touching the screen
+ *	e.targetTouches: 	Array of touch objects for every finger touching the screen that
+ *						originally touched down on the DOM object the transmitted the event.
+ *	e.changedTouches	Array of touch objects for touches that are changed for this event. 					
+ *						I'm not sure if this would ever be a list of more than one, but would 
+ *						be bad to assume. 
+ *
+ *	Touch objects : 
+ *
+ *	identifier: An identifying number, unique to each touch event
+ *	target: DOM object that broadcast the event
+ *	clientX: X coordinate of touch relative to the viewport (excludes scroll offset)
+ *	clientY: Y coordinate of touch relative to the viewport (excludes scroll offset)
+ *	screenX: Relative to the screen
+ *	screenY: Relative to the screen
+ *	pageX: Relative to the full page (includes scrolling)
+ *	pageY: Relative to the full page (includes scrolling)
+ */	
+
+function onTouchStart(e) {
+ 
+	for(var i = 0; i<e.changedTouches.length; i++){
+		var touch =e.changedTouches[i]; 
+		//console.log(leftTouchID + " " 
+		if((leftTouchID<0) && (touch.clientX<halfWidth))
+		{
+			leftTouchID = touch.identifier; 
+			leftTouchStartPos.reset(touch.clientX, touch.clientY); 	
+			leftTouchPos.copyFrom(leftTouchStartPos); 
+			leftVector.reset(0,0); 
+			continue; 		
+		} else {
+			
+			makeBullet(touch.clientX, touch.clientY); 
+			
+		}	
+	}
+	touches = e.touches; 
+}
+ 
+function onTouchMove(e) {
+	 // Prevent the browser from doing its default thing (scroll, zoom)
+	e.preventDefault();
+	
+	for(var i = 0; i<e.changedTouches.length; i++){
+		var touch =e.changedTouches[i]; 
+		if(leftTouchID == touch.identifier)
+		{
+			leftTouchPos.reset(touch.clientX, touch.clientY); 
+			leftVector.copyFrom(leftTouchPos); 
+			leftVector.minusEq(leftTouchStartPos); 	
+			break; 		
+		}		
+	}
+	
+	touches = e.touches; 
+	
+} 
+ 
+function onTouchEnd(e) { 
+   
+   	touches = e.touches; 
+
+	for(var i = 0; i<e.changedTouches.length; i++){
+		var touch =e.changedTouches[i]; 
+		if(leftTouchID == touch.identifier)
+		{
+			leftTouchID = -1; 
+			leftVector.reset(0,0); 
+			break; 		
+		}		
+	}
+   
+}
+
+function onMouseMove(event) {
+
+	mouseX = event.offsetX;
+	mouseY = event.offsetY;
+}
+
+
+function setupCanvas() {
+	
+	canvas = document.createElement( 'canvas' );
+	c = canvas.getContext( '2d' );
+	container = document.createElement( 'div' );
+	container.className = "container";
+
+	document.body.appendChild( container );
+	container.appendChild(canvas);	
+
+	resetCanvas(); 
+	
+	c.strokeStyle = "#ffffff";
+	c.lineWidth =2;	
+}
+
+
+</script>
+</body>
+</html>
