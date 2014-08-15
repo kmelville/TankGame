@@ -72,7 +72,7 @@
               position:relative;
           }
           #complete {
-              visibility: hidden;
+              display:none;
           }
         </style>
 
@@ -237,18 +237,16 @@
 
                 tank.update();
                 enemy.update();
-                    wall.update();
-                    wall.draw();
+                wall.update();
+                wall.draw();
 
-                if (wall.isEnabled()) {
-                    
-                } else if(!wall.exploded){
+                if(!wall.exploded){
                     createExplosion(wall.pos.x, wall.pos.y, "#525252");
 
                     createExplosion(wall.pos.x, wall.pos.y, "#FFA318");
                     //createBasicExplosion(wall.pos.x, wall.pos.y);
                     wall.exploded = true;
-                    document.getElementById('complete').style.visibility='visible';
+                    document.getElementById('complete').style.display='show';
                 }
                 for (var i = 0; i < particles.length; i++)
                 {
