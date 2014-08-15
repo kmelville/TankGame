@@ -64,7 +64,7 @@ Box = function(x,y) {
 	this.draw = function() {	
             
             c.clearRect(0,0,32,32); 
-            c.fillStyle = "rgba(255,255,255,0.5)";
+            c.fillStyle = "rgba(255,255,255,0)";
             c.fillRect(0,0,60,60); 
             if(this.exploded) return;
             c.save();
