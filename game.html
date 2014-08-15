@@ -185,19 +185,20 @@ function draw() {
 	}
 	//enemy.life--;
 	
-	
-	with(tank.pos) {
-		if (isColliding(wall,tank)){
-			var newX = x;
-			x = oldX;
-			if(isColliding(wall,tank)){
-				x = newX;
-				y = oldY;
-			} else {	
-				x = oldX;
-			}
-		}
-	}
+	if(wall.isEnabled()){
+            with(tank.pos) {
+                    if (isColliding(wall,tank)){
+                            var newX = x;
+                            x = oldX;
+                            if(isColliding(wall,tank)){
+                                    x = newX;
+                                    y = oldY;
+                            } else {	
+                                    x = oldX;
+                            }
+                    }
+            }
+        }
 	
 	with(tank.pos) {
 		if(x<(30)) x = 30; 
