@@ -49,6 +49,7 @@
                     leftTouchPos = new Vector2(0, 0),
                     leftTouchStartPos = new Vector2(0, 0),
                     leftVector = new Vector2(0, 0);
+                    var particles = [];
 
 
             setupCanvas();
@@ -116,7 +117,7 @@
              */
             function createBasicExplosion(x, y)
             {
-                var particles = [];
+                
                 // creating 4 particles that scatter at 0, 90, 180 and 270 degrees
                 for (var angle = 0; angle < 360; angle += 90)
                 {
