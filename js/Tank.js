@@ -63,7 +63,6 @@ TankMoving = function(x,y) {
 		
 		if(vel.isMagGreaterThan(0)) this.angle = vel.angle();
 		 
-		//if(thrustSize>0) thrustSize--; 
 		thrustSize = vel.magnitude(); 
 	};
 	
@@ -73,10 +72,10 @@ TankMoving = function(x,y) {
 		
 		
 		c.clearRect(0,0,60,60); 
-		c.fillStyle = "rgba(255,255,255,0.5)";
-                if(this.isEnabled()){
+                if(!this.isEnabled()){
                     return;
                 }
+		c.fillStyle = "rgba(255,255,255,0.5)";                
 		//c.fillRect(0,0,60,60); 
 		c.save();
 		c.translate(30, 30); 
