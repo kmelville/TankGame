@@ -1,6 +1,7 @@
 Box = function(x,y) {
 
-        var life = this.life = 0;
+        var life = this.life = 0
+        var exploded = this.exploded = false;
 	var pos = this.pos = new Vector2(x,y);  
 	this.angle = 0; 
 	var vel = this.vel = new Vector2(0,0);
@@ -57,6 +58,10 @@ Box = function(x,y) {
             } else {
                 return true;
             }
+        };
+        
+        this.isExploded = function() {
+            return exploded;
         };
         
 	// c = canvas context
