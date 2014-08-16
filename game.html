@@ -108,6 +108,7 @@
                 touches = [], // array of touch vectors
                 tank = new TankMoving(halfWidth, halfHeight),
                 wall = new Box(width * 3 / 4, halfHeight),
+                wall2 = new Box(width * 1 / 4, halfHeight),
                 enemy = new TankMoving(halfWidth - 60, halfHeight - 60),
                 theta = 0,
                 objects = [],
@@ -115,8 +116,7 @@
                 spareBullets = [];
 
         objects.push(wall);
-        //objects.concat(enemy);
-        objects.push(tank);
+        objects.push(wall2);
 
         document.body.appendChild(tank.canvas);
         document.body.appendChild(wall.canvas);
@@ -235,22 +235,18 @@
             if (counter < 0) {
                 document.getElementById('complete').style.display = 'block';
             }
+            for (var i = 0; i < objects.length; i++) {
+                var object = objects[i];
+                object.draw();              
+            }
 
             var oldX = tank.pos.x;
             var oldY = tank.pos.y;
             c.clearRect(0, 0, canvas.width, canvas.height);
             tank.targetVel.copyFrom(leftVector);
             tank.targetVel.multiplyEq(0.2);
-
-
-            //enemy.update();
-            for (var i = 0; i < objects.length; i++) {
-                var object = objects[i];
-                //object.update();
-                
-            }
+ 
             tank.update();
-            wall.draw();
 
             if (!wall.isEnabled()) {
                 if (!wall.exploded) {
