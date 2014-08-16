@@ -241,6 +241,19 @@
             tank.targetVel.copyFrom(leftVector);
             tank.targetVel.multiplyEq(0.2);
 
+            with (tank.pos) {
+                if (x < (30))
+                    x = 30;
+                else if (x > canvas.width - 30)
+                    x = canvas.width - 30;
+                if (y < 30)
+                    y = 30;
+                else if (y > canvas.height - 30)
+                    y = canvas.height - 30;
+            }
+            tank.update();
+            tank.draw(theta);
+
             for (var i = 0; i < objects.length; i++) {
                 var object = objects[i];
                 object.draw();
@@ -286,18 +299,17 @@
             }
 
 
-            with (tank.pos) {
-                if (x < (30))
-                    x = 30;
-                else if (x > canvas.width - 30)
-                    x = canvas.width - 30;
-                if (y < 30)
-                    y = 30;
-                else if (y > canvas.height - 30)
-                    y = canvas.height - 30;
-            }
-            tank.update();
-            tank.draw(theta);
+            //enemy.life--;
+
+
+
+
+
+
+
+            //if (enemy.isEnabled()) {
+            //    enemy.draw(0);
+            //}
 
             for (var i = 0; i < particles.length; i++) {
                 var particle = particles[i];
