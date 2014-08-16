@@ -235,11 +235,71 @@
             if (counter < 0) {
                 document.getElementById('complete').style.display = 'block';
             }
+            for (var i = 0; i < objects.length; i++) {
+                var object = objects[i];
+                object.draw();              
+            }
+
             var oldX = tank.pos.x;
             var oldY = tank.pos.y;
             c.clearRect(0, 0, canvas.width, canvas.height);
             tank.targetVel.copyFrom(leftVector);
             tank.targetVel.multiplyEq(0.2);
+ 
+            tank.update();
+
+            if (!wall.isEnabled()) {
+                if (!wall.exploded) {
+                    createExplosion(wall.pos.x, wall.pos.y, "#525252");
+
+                    createExplosion(wall.pos.x, wall.pos.y, "#FFA318");
+                    //createBasicExplosion(wall.pos.x, wall.pos.y);
+                    wall.exploded = true;
+                    completed = true;
+                }
+            }
+            for (var i = 0; i < particles.length; i++)
+            {
+                var particle = particles[i];
+
+                particle.update(30);
+                particle.draw(c);
+            }
+
+
+            for (var i = 0; i < bullets.length; i++) {
+                var bullet = bullets[i];
+                if (wall.isEnabled()) {
+                    if (checkBulletCollision(bullet, wall)) {
+                        bullets.splice(i, 1);
+                        wall.life--;
+                        //alert("whaaaattt!!!");
+                    }
+                }
+
+                //if (checkBulletCollision(bullet, enemy)) {
+                //    enemy.life--;
+                //    bullets.splice(i, 1);
+                //    //enemy.enabled = false;
+                //    //alert(enemy.life);
+                //}
+            }
+            //enemy.life--;
+
+            if (wall.isEnabled()) {
+                with (tank.pos) {
+                    if (isColliding(wall, tank)) {
+                        var newX = x;
+                        x = oldX;
+                        if (isColliding(wall, tank)) {
+                            x = newX;
+                            y = oldY;
+                        } else {
+                            x = oldX;
+                        }
+                    }
+                }
+            }
 
             with (tank.pos) {
                 if (x < (30))
@@ -251,72 +311,15 @@
                 else if (y > canvas.height - 30)
                     y = canvas.height - 30;
             }
-            tank.update();
+
+
+
             tank.draw(theta);
-
-            for (var i = 0; i < objects.length; i++) {
-                var object = objects[i];
-                object.draw();
-                if (!object.isEnabled()) {
-                    if (!object.exploded) {
-                        createExplosion(object.pos.x, object.pos.y, "#525252");
-                        createExplosion(object.pos.x, object.pos.y, "#FFA318");
-                        //createBasicExplosion(wall.pos.x, wall.pos.y);
-                        object.exploded = true;
-                        completed = true;
-                    }
-                }
-                if (object.isEnabled()) {
-                    with (tank.pos) {
-                        if (isColliding(object, tank)) {
-                            var newX = x;
-                            x = oldX;
-                            if (isColliding(object, tank)) {
-                                x = newX;
-                                y = oldY;
-                            } else {
-                                x = oldX;
-                            }
-                        }
-                    }
-                }
-                for (var i = 0; i < bullets.length; i++) {
-                    var bullet = bullets[i];
-                    if (object.isEnabled()) {
-                        if (checkBulletCollision(bullet, object)) {
-                            bullets.splice(i, 1);
-                            object.life--;
-                        }
-                    }
-
-                    //if (checkBulletCollision(bullet, enemy)) {
-                    //    enemy.life--;
-                    //    bullets.splice(i, 1);
-                    //    //enemy.enabled = false;
-                    //    //alert(enemy.life);
-                    //}
-                }
-            }
-
-
-            //enemy.life--;
-
-
-
-
-
 
 
             //if (enemy.isEnabled()) {
             //    enemy.draw(0);
             //}
-
-            for (var i = 0; i < particles.length; i++) {
-                var particle = particles[i];
-
-                particle.update(30);
-                particle.draw(c);
-            }
 
             for (var i = 0; i < bullets.length; i++) {
                 var bullet = bullets[i];
